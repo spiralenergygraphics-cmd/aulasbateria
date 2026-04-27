@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aulas de Bateria</title>
   <meta name="theme-color" content="#0d0d0d" />
-  <meta name="description" content="Gestão de Alunos — Aulas de Bateria" />
+  <meta name="description" content="GestÃ£o de Alunos â€” Aulas de Bateria" />
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icon-192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,7 +41,7 @@
       overflow-x: hidden;
     }
 
-    /* ─── LOGIN ─── */
+    /* â”€â”€â”€ LOGIN â”€â”€â”€ */
     #login-screen {
       position: fixed; inset: 0;
       display: flex; align-items: center; justify-content: center;
@@ -119,10 +119,10 @@
       min-height: 1rem;
     }
 
-    /* ─── APP ─── */
+    /* â”€â”€â”€ APP â”€â”€â”€ */
     #app { display: none; }
 
-    /* ─── HEADER ─── */
+    /* â”€â”€â”€ HEADER â”€â”€â”€ */
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -143,7 +143,7 @@
 
     .header-nav { display: flex; gap: 0.5rem; }
 
-    /* ─── TABS ─── */
+    /* â”€â”€â”€ TABS â”€â”€â”€ */
     .tab-btn {
       font-family: var(--font-display);
       font-size: 0.8rem;
@@ -166,7 +166,7 @@
 
     .tab-btn.active { background: rgba(255,77,0,0.08); }
 
-    /* ─── BTNs ─── */
+    /* â”€â”€â”€ BTNs â”€â”€â”€ */
     .btn {
       font-family: var(--font-display);
       font-size: 0.8rem;
@@ -191,16 +191,16 @@
     .btn-success { border-color: var(--success); color: var(--success); }
     .btn-success:hover { background: var(--success); color: #000; }
 
-    /* ─── MAIN ─── */
+    /* â”€â”€â”€ MAIN â”€â”€â”€ */
     main { max-width: 1300px; margin: 0 auto; padding: 2rem; }
 
-    /* ─── VIEWS ─── */
+    /* â”€â”€â”€ VIEWS â”€â”€â”€ */
     .view { display: none; }
     .view.active { display: block; animation: fadeIn 0.2s ease; }
 
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* ─── SECTION HEADER ─── */
+    /* â”€â”€â”€ SECTION HEADER â”€â”€â”€ */
     .sec-header {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
@@ -212,7 +212,7 @@
       letter-spacing: -0.02em;
     }
 
-    /* ─── STUDENT GRID ─── */
+    /* â”€â”€â”€ STUDENT GRID â”€â”€â”€ */
     .students-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -294,7 +294,7 @@
       color: var(--text-muted);
     }
 
-    /* ─── FORM ─── */
+    /* â”€â”€â”€ FORM â”€â”€â”€ */
     .form-header {
       display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;
     }
@@ -346,7 +346,7 @@
 
     .checkbox-label input[type=checkbox] { accent-color: var(--accent); width: 16px; height: 16px; }
 
-    /* ─── AGENDA / CALENDAR ─── */
+    /* â”€â”€â”€ AGENDA / CALENDAR â”€â”€â”€ */
     .agenda-header {
       display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
     }
@@ -376,7 +376,7 @@
 
     .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ─── AGENDA LIST ─── */
+    /* â”€â”€â”€ AGENDA LIST â”€â”€â”€ */
     .agenda-day {
       margin-bottom: 1.5rem;
     }
@@ -474,7 +474,7 @@
 
     .aula-obs-wrap input:focus { border-color: var(--accent); }
 
-    /* ─── STATS ─── */
+    /* â”€â”€â”€ STATS â”€â”€â”€ */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -508,7 +508,7 @@
     .stat-val.green { color: var(--success); }
     .stat-val.yellow { color: var(--accent2); }
 
-    /* ─── EXPORT MODAL ─── */
+    /* â”€â”€â”€ EXPORT MODAL â”€â”€â”€ */
     .modal-overlay {
       position: fixed; inset: 0;
       background: rgba(0,0,0,0.75);
@@ -555,7 +555,7 @@
     .student-check-item input { accent-color: var(--accent); width: 15px; height: 15px; }
     .student-check-item label { cursor: pointer; font-size: 0.9rem; }
 
-    /* ─── NOTIF ─── */
+    /* â”€â”€â”€ NOTIF â”€â”€â”€ */
     .notif {
       position: fixed; bottom: 2rem; right: 2rem;
       background: var(--accent);
@@ -572,7 +572,7 @@
 
     .notif.show { transform: translateY(0); opacity: 1; }
 
-    /* ─── PDF ─── */
+    /* â”€â”€â”€ PDF â”€â”€â”€ */
     @media print {
       body * { visibility: hidden; }
       #pdf-area, #pdf-area * { visibility: visible; }
@@ -605,7 +605,7 @@
     .pdf-footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 0.65rem; color: #aaa; font-family: 'Courier Prime', monospace; display: flex; justify-content: space-between; }
     .pdf-divider { border: none; border-top: 2px solid #000; margin: 2rem 0; }
 
-    /* ─── EMPTY ─── */
+    /* â”€â”€â”€ EMPTY â”€â”€â”€ */
     .empty-state {
       text-align: center;
       padding: 3rem 2rem;
@@ -615,7 +615,7 @@
       letter-spacing: 0.1em;
     }
 
-    /* ─── RESPONSIVE ─── */
+    /* â”€â”€â”€ RESPONSIVE â”€â”€â”€ */
     @media (max-width: 600px) {
       main { padding: 1rem; }
       header { padding: 0.75rem 1rem; }
@@ -632,13 +632,13 @@
 
 <!-- LOGIN -->
 <div id="login-screen">
-  <div class="login-icon">🥁</div>
+  <div class="login-icon">ðŸ¥</div>
   <div>
     <div class="login-title">Aulas de<br><span>Bateria</span></div>
-    <div class="login-sub" style="margin-top:0.5rem">Gestão de Alunos</div>
+    <div class="login-sub" style="margin-top:0.5rem">GestÃ£o de Alunos</div>
   </div>
   <div class="login-box">
-    <input type="password" id="pin-input" placeholder="••••••" maxlength="20"
+    <input type="password" id="pin-input" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢" maxlength="20"
       onkeydown="if(event.key==='Enter') doLogin()" autocomplete="current-password" />
     <button class="login-btn" onclick="doLogin()">ENTRAR</button>
     <div class="login-error" id="login-error"></div>
@@ -648,31 +648,31 @@
 <!-- APP -->
 <div id="app">
   <header>
-    <div class="logo"><span class="logo-icon">🥁</span> Aulas de <span>Bateria</span></div>
+    <div class="logo"><span class="logo-icon">ðŸ¥</span> Aulas de <span>Bateria</span></div>
     <div class="header-nav">
       <button class="tab-btn active" onclick="switchTab('agenda', this)">Agenda</button>
       <button class="tab-btn" onclick="switchTab('alunos', this)">Alunos</button>
-      <button class="tab-btn" onclick="switchTab('relatorios', this)">Relatórios</button>
+      <button class="tab-btn" onclick="switchTab('relatorios', this)">RelatÃ³rios</button>
     </div>
     <button class="btn btn-sm" onclick="doLogout()" style="margin-left:auto">Sair</button>
   </header>
 
   <main>
 
-    <!-- ═══ AGENDA ═══ -->
+    <!-- â•â•â• AGENDA â•â•â• -->
     <div class="view active" id="view-agenda">
       <div class="agenda-header">
         <div class="month-nav">
-          <button class="nav-btn" onclick="changeMonth(-1)">‹</button>
+          <button class="nav-btn" onclick="changeMonth(-1)">â€¹</button>
           <div class="month-label" id="month-label"></div>
-          <button class="nav-btn" onclick="changeMonth(1)">›</button>
+          <button class="nav-btn" onclick="changeMonth(1)">â€º</button>
         </div>
         <button class="btn btn-sm" onclick="goToday()">Hoje</button>
       </div>
       <div id="agenda-body"></div>
     </div>
 
-    <!-- ═══ ALUNOS ═══ -->
+    <!-- â•â•â• ALUNOS â•â•â• -->
     <div class="view" id="view-alunos">
 
       <!-- List -->
@@ -688,7 +688,7 @@
       <!-- Form -->
       <div id="subview-form" style="display:none">
         <div class="form-header">
-          <button class="btn btn-sm" onclick="showAlunosList()">← Voltar</button>
+          <button class="btn btn-sm" onclick="showAlunosList()">â† Voltar</button>
           <h2 id="aluno-form-title">Novo Aluno</h2>
         </div>
 
@@ -705,7 +705,7 @@
               <label class="checkbox-label"><input type="checkbox" value="3" /> Qua</label>
               <label class="checkbox-label"><input type="checkbox" value="4" /> Qui</label>
               <label class="checkbox-label"><input type="checkbox" value="5" /> Sex</label>
-              <label class="checkbox-label"><input type="checkbox" value="6" /> Sáb</label>
+              <label class="checkbox-label"><input type="checkbox" value="6" /> SÃ¡b</label>
               <label class="checkbox-label"><input type="checkbox" value="0" /> Dom</label>
             </div>
           </div>
@@ -714,7 +714,7 @@
             <input type="time" id="a-hora" />
           </div>
           <div class="field">
-            <label>Valor da Aula (€)</label>
+            <label>Valor da Aula (â‚¬)</label>
             <input type="number" id="a-valor" min="0" step="0.5" placeholder="0.00" />
           </div>
           <div class="field">
@@ -729,7 +729,7 @@
             </select>
           </div>
           <div class="field" style="grid-column:span 2">
-            <label>Notas / Observações</label>
+            <label>Notas / ObservaÃ§Ãµes</label>
             <textarea id="a-notas" placeholder="Notas gerais sobre o aluno..."></textarea>
           </div>
         </div>
@@ -741,17 +741,17 @@
       </div>
     </div>
 
-    <!-- ═══ RELATÓRIOS ═══ -->
+    <!-- â•â•â• RELATÃ“RIOS â•â•â• -->
     <div class="view" id="view-relatorios">
       <div class="sec-header">
-        <div class="sec-title">Relatórios</div>
+        <div class="sec-title">RelatÃ³rios</div>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:1rem;max-width:600px">
 
-        <!-- Relatório Individual -->
+        <!-- RelatÃ³rio Individual -->
         <div style="background:var(--surface);border:1px solid var(--border);padding:1.5rem;border-radius:var(--r)">
-          <div style="font-size:1.1rem;font-weight:700;margin-bottom:0.3rem">Relatório Individual</div>
+          <div style="font-size:1.1rem;font-weight:700;margin-bottom:0.3rem">RelatÃ³rio Individual</div>
           <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem">PDF por aluno com resumo de aulas e valor a pagar</div>
           <div class="form-grid" style="grid-template-columns:1fr 1fr">
             <div class="field">
@@ -759,19 +759,19 @@
               <select id="rel-aluno"></select>
             </div>
             <div class="field">
-              <label>Mês</label>
+              <label>MÃªs</label>
               <input type="month" id="rel-mes-ind" />
             </div>
           </div>
           <button class="btn btn-primary" onclick="exportIndividual()">Exportar PDF</button>
         </div>
 
-        <!-- Relatório Escola -->
+        <!-- RelatÃ³rio Escola -->
         <div style="background:var(--surface);border:1px solid var(--border);padding:1.5rem;border-radius:var(--r)">
-          <div style="font-size:1.1rem;font-weight:700;margin-bottom:0.3rem">Relatório Escola</div>
+          <div style="font-size:1.1rem;font-weight:700;margin-bottom:0.3rem">RelatÃ³rio Escola</div>
           <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem">PDF coletivo com todos os alunos da escola selecionados</div>
           <div class="field" style="margin-bottom:1rem">
-            <label>Mês</label>
+            <label>MÃªs</label>
             <input type="month" id="rel-mes-escola" style="max-width:200px" />
           </div>
           <div class="field" style="margin-bottom:1rem">
@@ -798,22 +798,22 @@
 <div class="notif" id="notif"></div>
 
 <script>
-// ─── CONFIG ─────────────────────────────────────────────────────────
+// â”€â”€â”€ CONFIG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const PASSWORD = 'bateria2024'; // Altera aqui a tua password
 const SK_ALUNOS = 'ab_alunos';
 const SK_AULAS = 'ab_aulas';
 
-const DIAS_NOME = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-const DIAS_LONG = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
-const MESES = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const DIAS_NOME = ['Dom','Seg','Ter','Qua','Qui','Sex','SÃ¡b'];
+const DIAS_LONG = ['Domingo','Segunda','TerÃ§a','Quarta','Quinta','Sexta','SÃ¡bado'];
+const MESES = ['Janeiro','Fevereiro','MarÃ§o','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 
-// ─── STATE ──────────────────────────────────────────────────────────
+// â”€â”€â”€ STATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let alunos = [];
 let aulas = []; // { id, alunoId, data (YYYY-MM-DD), status ('dada'|'fp'|'faj'|'fanj'), obs, exp }
 let agendaDate = new Date();
 let editingAlunoId = null;
 
-// ─── AUTH ────────────────────────────────────────────────────────────
+// â”€â”€â”€ AUTH â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function doLogin() {
   const val = document.getElementById('pin-input').value;
   if (val === PASSWORD) {
@@ -836,7 +836,7 @@ function doLogout() {
   location.reload();
 }
 
-// ─── DATA ────────────────────────────────────────────────────────────
+// â”€â”€â”€ DATA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function loadData() {
   alunos = JSON.parse(localStorage.getItem(SK_ALUNOS) || '[]');
   aulas = JSON.parse(localStorage.getItem(SK_AULAS) || '[]');
@@ -847,7 +847,7 @@ function saveAulasData() { localStorage.setItem(SK_AULAS, JSON.stringify(aulas))
 
 function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 5); }
 
-// ─── TABS ────────────────────────────────────────────────────────────
+// â”€â”€â”€ TABS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function switchTab(tab, el) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
@@ -858,7 +858,7 @@ function switchTab(tab, el) {
   if (tab === 'relatorios') initRelatorios();
 }
 
-// ─── AGENDA ──────────────────────────────────────────────────────────
+// â”€â”€â”€ AGENDA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function initAgenda() {
   agendaDate = new Date();
   renderAgenda();
@@ -903,7 +903,7 @@ function renderAgenda() {
   const body = document.getElementById('agenda-body');
 
   if (Object.keys(dayMap).length === 0) {
-    body.innerHTML = `<div class="empty-state">Nenhuma aula programada neste mês.<br>Adiciona alunos com dias da semana definidos.</div>`;
+    body.innerHTML = `<div class="empty-state">Nenhuma aula programada neste mÃªs.<br>Adiciona alunos com dias da semana definidos.</div>`;
     return;
   }
 
@@ -933,8 +933,8 @@ function renderAgenda() {
               <span class="status-pill pill-fanj ${status==='fanj'?'active':''}" onclick="setAulaStatus('${dateStr}','${aluno.id}','fanj',this)">Falta Aluno N/Just.</span>
             </div>
             <div class="aula-obs-wrap">
-              <input type="text" placeholder="Matéria dada..." value="${esc(obs)}" onchange="setAulaObs('${dateStr}','${aluno.id}','obs',this.value)" />
-              <input type="text" placeholder="Observações..." value="${esc(exp)}" onchange="setAulaObs('${dateStr}','${aluno.id}','exp',this.value)" />
+              <input type="text" placeholder="MatÃ©ria dada..." value="${esc(obs)}" onchange="setAulaObs('${dateStr}','${aluno.id}','obs',this.value)" />
+              <input type="text" placeholder="ObservaÃ§Ãµes..." value="${esc(exp)}" onchange="setAulaObs('${dateStr}','${aluno.id}','exp',this.value)" />
             </div>
           </div>`;
       }).join('');
@@ -980,7 +980,7 @@ function setAulaObs(dateStr, alunoId, field, val) {
   saveAulasData();
 }
 
-// ─── ALUNOS ──────────────────────────────────────────────────────────
+// â”€â”€â”€ ALUNOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function showAlunosList() {
   document.getElementById('subview-list').style.display = 'block';
   document.getElementById('subview-form').style.display = 'none';
@@ -1080,7 +1080,7 @@ function renderAlunos() {
   `;
 
   if (!alunos.length) {
-    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">Nenhum aluno ainda.<br>Clica em "+ Novo Aluno" para começar.</div>`;
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">Nenhum aluno ainda.<br>Clica em "+ Novo Aluno" para comeÃ§ar.</div>`;
     return;
   }
 
@@ -1091,8 +1091,8 @@ function renderAlunos() {
       <div class="student-card ${a.tipo}" onclick="showEditAluno('${a.id}')">
         <div class="student-name">${esc(a.nome)}</div>
         <div class="student-meta">
-          <span>📅 ${diasStr || '—'} ${a.hora ? '· ' + a.hora : ''}</span>
-          ${a.tipo === 'escola' && a.pct ? `<span>🏫 ${a.pct}% para a escola</span>` : ''}
+          <span>ðŸ“… ${diasStr || 'â€”'} ${a.hora ? 'Â· ' + a.hora : ''}</span>
+          ${a.tipo === 'escola' && a.pct ? `<span>ðŸ« ${a.pct}% para a escola</span>` : ''}
         </div>
         <div class="student-tags">
           <span class="tag ${a.tipo === 'escola' ? 'tag-escola' : 'tag-particular'}">${a.tipo === 'escola' ? 'Escola' : 'Particular'}</span>
@@ -1105,7 +1105,7 @@ function renderAlunos() {
   }).join('');
 }
 
-// ─── RELATÓRIOS ──────────────────────────────────────────────────────
+// â”€â”€â”€ RELATÃ“RIOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function initRelatorios() {
   // Populate aluno select
   const sel = document.getElementById('rel-aluno');
@@ -1137,7 +1137,7 @@ function getAulasMes(alunoId, mesStr) {
 function exportIndividual() {
   const alunoId = document.getElementById('rel-aluno').value;
   const mes = document.getElementById('rel-mes-ind').value;
-  if (!alunoId || !mes) { showNotif('Seleciona aluno e mês'); return; }
+  if (!alunoId || !mes) { showNotif('Seleciona aluno e mÃªs'); return; }
 
   const aluno = alunos.find(a => a.id === alunoId);
   if (!aluno) return;
@@ -1171,24 +1171,24 @@ function exportIndividual() {
   const valorLiquido = valorPagar - valorEscola;
 
   const rows = programadas.map(p => {
-    const statusLabels = { dada: 'Dada', fp: 'Falta Professor', faj: 'Falta Aluno (Just.)', fanj: 'Falta Aluno (N/Just.)', '': '—' };
+    const statusLabels = { dada: 'Dada', fp: 'Falta Professor', faj: 'Falta Aluno (Just.)', fanj: 'Falta Aluno (N/Just.)', '': 'â€”' };
     return `<tr>
       <td>${p.d} ${DIAS_NOME[p.dow]}</td>
-      <td>${statusLabels[p.status] || '—'}</td>
-      <td>${esc(p.obs) || '—'}</td>
-      <td>${esc(p.exp) || '—'}</td>
+      <td>${statusLabels[p.status] || 'â€”'}</td>
+      <td>${esc(p.obs) || 'â€”'}</td>
+      <td>${esc(p.exp) || 'â€”'}</td>
     </tr>`;
   }).join('');
 
   const pctLine = aluno.tipo === 'escola' && aluno.pct
     ? `<div class="pdf-total-row"><span>Percentagem Escola (${aluno.pct}%)</span><span>- ${fmt(valorEscola)}</span></div>
-       <div class="pdf-total-row main"><span>Valor Líquido</span><span>${fmt(valorLiquido)}</span></div>`
+       <div class="pdf-total-row main"><span>Valor LÃ­quido</span><span>${fmt(valorLiquido)}</span></div>`
     : `<div class="pdf-total-row main"><span>Total a Pagar</span><span>${fmt(valorPagar)}</span></div>`;
 
   const area = document.getElementById('pdf-area');
   area.innerHTML = `
     <div class="pdf-h">
-      <div><div class="pdf-logo">Aulas de <span>Bateria</span></div><div style="font-size:0.7rem;color:#999;font-family:'Courier Prime',monospace;letter-spacing:0.15em;margin-top:0.2rem">RELATÓRIO MENSAL</div></div>
+      <div><div class="pdf-logo">Aulas de <span>Bateria</span></div><div style="font-size:0.7rem;color:#999;font-family:'Courier Prime',monospace;letter-spacing:0.15em;margin-top:0.2rem">RELATÃ“RIO MENSAL</div></div>
       <div class="pdf-meta"><strong>${mesLabel}</strong><div>${esc(aluno.nome)}</div><div>${aluno.tipo === 'escola' ? 'Aluno de Escola' : 'Aluno Particular'}</div></div>
     </div>
     <div class="pdf-section">
@@ -1199,9 +1199,9 @@ function exportIndividual() {
       </table>
     </div>
     <div class="pdf-section">
-      <h3>Detalhe de Aulas — ${mesLabel}</h3>
+      <h3>Detalhe de Aulas â€” ${mesLabel}</h3>
       <table class="pdf-table">
-        <thead><tr><th>Data</th><th>Estado</th><th>Matéria</th><th>Observações</th></tr></thead>
+        <thead><tr><th>Data</th><th>Estado</th><th>MatÃ©ria</th><th>ObservaÃ§Ãµes</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>
@@ -1224,7 +1224,7 @@ function exportIndividual() {
 
 function exportEscola() {
   const mes = document.getElementById('rel-mes-escola').value;
-  if (!mes) { showNotif('Seleciona um mês'); return; }
+  if (!mes) { showNotif('Seleciona um mÃªs'); return; }
 
   const checked = Array.from(document.querySelectorAll('#escola-check-list input:checked')).map(cb => cb.value);
   if (!checked.length) { showNotif('Seleciona pelo menos um aluno'); return; }
@@ -1259,8 +1259,8 @@ function exportEscola() {
     const valorEscola = valorBruto * ((aluno.pct || 0) / 100);
 
     const rows = programadas.map(p => {
-      const sl = { dada: 'Dada', fp: 'Falta Prof.', faj: 'F. Aluno Just.', fanj: 'F. Aluno N/Just.', '': '—' };
-      return `<tr><td>${p.d} ${DIAS_NOME[p.dow]}</td><td>${sl[p.status]||'—'}</td><td>${esc(p.obs)||'—'}</td></tr>`;
+      const sl = { dada: 'Dada', fp: 'Falta Prof.', faj: 'F. Aluno Just.', fanj: 'F. Aluno N/Just.', '': 'â€”' };
+      return `<tr><td>${p.d} ${DIAS_NOME[p.dow]}</td><td>${sl[p.status]||'â€”'}</td><td>${esc(p.obs)||'â€”'}</td></tr>`;
     }).join('');
 
     blocksHtml += `
@@ -1268,14 +1268,14 @@ function exportEscola() {
       <div class="pdf-section">
         <h3>Aluno</h3>
         <p style="font-size:1.1rem;font-weight:700">${esc(aluno.nome)}</p>
-        <p style="font-size:0.8rem;color:#555;margin-top:0.2rem">${(aluno.dias||[]).sort().map(d=>DIAS_NOME[parseInt(d)]).join(', ')} · ${aluno.hora||''} · ${fmt(aluno.valor||0)}/aula</p>
+        <p style="font-size:0.8rem;color:#555;margin-top:0.2rem">${(aluno.dias||[]).sort().map(d=>DIAS_NOME[parseInt(d)]).join(', ')} Â· ${aluno.hora||''} Â· ${fmt(aluno.valor||0)}/aula</p>
       </div>
       <table class="pdf-table">
         <thead><tr><th>Resumo</th><th>Dadas</th><th>F. Aluno Just.</th><th>F. Aluno N/Just.</th><th>F. Prof.</th></tr></thead>
         <tbody><tr><td></td><td>${dadas}</td><td>${faj}</td><td>${fanj}</td><td>${fp}</td></tr></tbody>
       </table>
       <table class="pdf-table">
-        <thead><tr><th>Data</th><th>Estado</th><th>Matéria</th></tr></thead>
+        <thead><tr><th>Data</th><th>Estado</th><th>MatÃ©ria</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
       <div class="pdf-totals" style="max-width:300px">
@@ -1289,7 +1289,7 @@ function exportEscola() {
   const area = document.getElementById('pdf-area');
   area.innerHTML = `
     <div class="pdf-h">
-      <div><div class="pdf-logo">Aulas de <span>Bateria</span></div><div style="font-size:0.7rem;color:#999;font-family:'Courier Prime',monospace;letter-spacing:0.15em;margin-top:0.2rem">RELATÓRIO ESCOLA</div></div>
+      <div><div class="pdf-logo">Aulas de <span>Bateria</span></div><div style="font-size:0.7rem;color:#999;font-family:'Courier Prime',monospace;letter-spacing:0.15em;margin-top:0.2rem">RELATÃ“RIO ESCOLA</div></div>
       <div class="pdf-meta"><strong>${mesLabel}</strong><div>${checked.length} aluno(s)</div></div>
     </div>
     ${blocksHtml}
@@ -1301,9 +1301,9 @@ function exportEscola() {
   area.style.display = 'none';
 }
 
-// ─── HELPERS ─────────────────────────────────────────────────────────
+// â”€â”€â”€ HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function fmt(n) {
-  return '€\u00a0' + (n||0).toLocaleString('pt-PT', { minimumFractionDigits:2, maximumFractionDigits:2 });
+  return 'â‚¬\u00a0' + (n||0).toLocaleString('pt-PT', { minimumFractionDigits:2, maximumFractionDigits:2 });
 }
 
 function esc(s) {
@@ -1322,7 +1322,7 @@ function closeModal(e) {
     document.getElementById('modal-overlay').classList.remove('open');
 }
 
-// ─── INIT ─────────────────────────────────────────────────────────────
+// â”€â”€â”€ INIT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 if (sessionStorage.getItem('ab_auth') === '1') {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';

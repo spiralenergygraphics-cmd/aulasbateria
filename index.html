@@ -25,425 +25,115 @@
       --text-dim: #999;
       --success: #00e676;
       --danger: #ff3b3b;
-      --info: #5bc8ff;
       --r: 3px;
       --font-display: 'Syne', sans-serif;
       --font-mono: 'Courier Prime', monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-display); min-height: 100vh; overflow-x: hidden; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-display);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ─── LOGIN ─── */
-    #login-screen {
-      position: fixed; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 2rem;
-      background: var(--bg);
-      z-index: 1000;
-    }
-
-    .login-icon {
-      font-size: 4rem;
-      line-height: 1;
-      filter: grayscale(0.2);
-    }
-
-    .login-title {
-      font-size: clamp(2rem, 8vw, 3.5rem);
-      font-weight: 800;
-      text-align: center;
-      line-height: 1.1;
-    }
-
+    /* LOGIN */
+    #login-screen { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 2rem; background: var(--bg); z-index: 1000; }
+    .login-icon { font-size: 4rem; line-height: 1; }
+    .login-title { font-size: clamp(2rem,8vw,3.5rem); font-weight: 800; text-align: center; line-height: 1.1; }
     .login-title span { color: var(--accent); }
-
-    .login-sub {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      text-align: center;
-      margin-top: -1.5rem;
-    }
-
-    .login-box { display: flex; flex-direction: column; gap: 1rem; width: min(300px, 90vw); }
-
-    .login-box input {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: var(--font-mono);
-      font-size: 1.2rem;
-      padding: 1rem;
-      text-align: center;
-      letter-spacing: 0.4em;
-      outline: none;
-      border-radius: var(--r);
-      transition: border-color 0.2s;
-    }
-
+    .login-sub { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.25em; color: var(--text-muted); text-transform: uppercase; text-align: center; margin-top: -1.5rem; }
+    .login-box { display: flex; flex-direction: column; gap: 1rem; width: min(300px,90vw); }
+    .login-box input { background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: var(--font-mono); font-size: 1.2rem; padding: 1rem; text-align: center; letter-spacing: 0.4em; outline: none; border-radius: var(--r); transition: border-color 0.2s; }
     .login-box input:focus { border-color: var(--accent); }
-
-    .login-btn {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.9rem;
-      cursor: pointer;
-      border-radius: var(--r);
-      transition: background 0.2s, transform 0.1s;
-    }
-
+    .login-btn { background: var(--accent); color: #fff; border: none; font-family: var(--font-display); font-weight: 700; font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.9rem; cursor: pointer; border-radius: var(--r); }
     .login-btn:hover { background: #e64400; }
-    .login-btn:active { transform: scale(0.98); }
+    .login-error { font-family: var(--font-mono); font-size: 0.75rem; color: var(--danger); text-align: center; min-height: 1rem; }
 
-    .login-error {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--danger);
-      text-align: center;
-      min-height: 1rem;
-    }
-
-    /* ─── APP ─── */
     #app { display: none; }
 
-    /* ─── HEADER ─── */
-    header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      position: sticky; top: 0; z-index: 100;
-      gap: 1rem;
-    }
-
-    .logo {
-      font-weight: 800;
-      font-size: 1.3rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-
-    .logo-icon { font-size: 1.4rem; }
+    /* HEADER */
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; gap: 1rem; flex-wrap: wrap; }
+    .logo { font-weight: 800; font-size: 1.3rem; display: flex; align-items: center; gap: 0.5rem; }
     .logo span { color: var(--accent); }
+    .header-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
-    .header-nav { display: flex; gap: 0.5rem; }
-
-    /* ─── TABS ─── */
-    .tab-btn {
-      font-family: var(--font-display);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      border-radius: var(--r);
-      transition: all 0.15s;
-    }
-
-    .tab-btn.active, .tab-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .tab-btn.active { background: rgba(255,77,0,0.08); }
-
-    /* ─── BTNs ─── */
-    .btn {
-      font-family: var(--font-display);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.55rem 1.1rem;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
-      border-radius: var(--r);
-      transition: all 0.15s;
-    }
-
+    /* BUTTONS */
+    .btn { font-family: var(--font-display); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.55rem 1.1rem; border: 1px solid var(--border); background: transparent; color: var(--text); cursor: pointer; border-radius: var(--r); transition: all 0.15s; }
     .btn:hover { border-color: var(--accent); color: var(--accent); }
     .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
     .btn-primary:hover { background: #e64400; color: #fff; border-color: #e64400; }
     .btn-sm { padding: 0.35rem 0.75rem; font-size: 0.72rem; }
     .btn-danger { border-color: var(--danger); color: var(--danger); }
     .btn-danger:hover { background: var(--danger); color: #fff; }
-    .btn-success { border-color: var(--success); color: var(--success); }
-    .btn-success:hover { background: var(--success); color: #000; }
 
-    /* ─── MAIN ─── */
+    /* TABS */
+    .tab-btn { font-family: var(--font-display); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 1rem; border: 1px solid var(--border); background: transparent; color: var(--text-muted); cursor: pointer; border-radius: var(--r); transition: all 0.15s; }
+    .tab-btn.active, .tab-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .tab-btn.active { background: rgba(255,77,0,0.08); }
+
     main { max-width: 1300px; margin: 0 auto; padding: 2rem; }
 
-    /* ─── VIEWS ─── */
     .view { display: none; }
     .view.active { display: block; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .sec-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+    .sec-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
 
-    /* ─── SECTION HEADER ─── */
-    .sec-header {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
-    }
+    /* STATS */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); padding: 1.1rem 1.3rem; border-radius: var(--r); }
+    .stat-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.4rem; }
+    .stat-val { font-size: 1.8rem; font-weight: 800; line-height: 1; }
+    .stat-val.orange { color: var(--accent); }
+    .stat-val.green { color: var(--success); }
+    .stat-val.yellow { color: var(--accent2); }
 
-    .sec-title {
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    /* ─── STUDENT GRID ─── */
-    .students-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
-    }
-
-    .student-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 1.2rem 1.4rem;
-      cursor: pointer;
-      transition: border-color 0.15s, transform 0.1s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .student-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: var(--accent);
-      opacity: 0;
-      transition: opacity 0.15s;
-    }
-
+    /* STUDENT GRID */
+    .students-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 1rem; }
+    .student-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 1.2rem 1.4rem; cursor: pointer; transition: border-color 0.15s; position: relative; overflow: hidden; }
+    .student-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent); opacity:0; transition:opacity 0.15s; }
     .student-card:hover { border-color: var(--accent); }
-    .student-card:hover::before { opacity: 1; }
-
-    .student-card.escola::before { background: var(--accent2); opacity: 1; }
+    .student-card:hover::before { opacity:1; }
+    .student-card.escola::before { background:var(--accent2); opacity:1; }
     .student-card.escola { border-color: rgba(255,170,0,0.3); }
-
-    .student-name {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
-    }
-
-    .student-meta {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      display: flex; flex-direction: column; gap: 0.2rem;
-    }
-
-    .student-tags {
-      display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.6rem;
-    }
-
-    .tag {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      padding: 0.2rem 0.5rem;
-      border-radius: 20px;
-      text-transform: uppercase;
-    }
-
+    .student-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .student-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); display: flex; flex-direction: column; gap: 0.2rem; }
+    .student-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.6rem; }
+    .tag { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; padding: 0.2rem 0.5rem; border-radius: 20px; text-transform: uppercase; }
     .tag-escola { background: rgba(255,170,0,0.15); color: var(--accent2); border: 1px solid rgba(255,170,0,0.3); }
     .tag-particular { background: rgba(255,77,0,0.12); color: var(--accent); border: 1px solid rgba(255,77,0,0.3); }
+    .student-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--border); }
+    .student-valor { font-family: var(--font-mono); font-size: 0.85rem; color: var(--success); }
+    .aulas-count { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
 
-    .student-footer {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-top: 0.8rem;
-      padding-top: 0.8rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .student-valor {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: var(--success);
-    }
-
-    .aulas-count {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
-
-    /* ─── FORM ─── */
-    .form-header {
-      display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;
-    }
-
+    /* FORM */
+    .form-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
     .form-header h2 { font-size: 1.8rem; font-weight: 800; }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 1rem; margin-bottom: 1.5rem; }
     .field { display: flex; flex-direction: column; gap: 0.35rem; }
-
-    .field label {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-
-    .field input, .field select, .field textarea {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      padding: 0.7rem 0.9rem;
-      outline: none;
-      border-radius: var(--r);
-      transition: border-color 0.2s;
-    }
-
+    .field label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; }
+    .field input, .field select, .field textarea { background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: var(--font-display); font-size: 0.9rem; padding: 0.7rem 0.9rem; outline: none; border-radius: var(--r); transition: border-color 0.2s; }
     .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); }
     .field select option { background: var(--surface2); }
     .field textarea { resize: vertical; min-height: 70px; }
-
-    .checkbox-group {
-      display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
-      padding: 0.7rem 0;
-    }
-
-    .checkbox-label {
-      display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.85rem; cursor: pointer;
-    }
-
+    .field input[readonly] { opacity: 0.5; cursor: not-allowed; }
+    .checkbox-group { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; padding: 0.7rem 0; }
+    .checkbox-label { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; cursor: pointer; }
     .checkbox-label input[type=checkbox] { accent-color: var(--accent); width: 16px; height: 16px; }
 
-    /* ─── AGENDA / CALENDAR ─── */
-    .agenda-header {
-      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
-    }
-
-    .month-nav {
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-
-    .month-label {
-      font-size: 1.4rem;
-      font-weight: 800;
-      min-width: 200px;
-      text-align: center;
-    }
-
-    .nav-btn {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-size: 1.2rem;
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      border-radius: var(--r);
-      transition: all 0.15s;
-    }
-
+    /* AGENDA */
+    .agenda-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .month-nav { display: flex; align-items: center; gap: 0.75rem; }
+    .month-label { font-size: 1.4rem; font-weight: 800; min-width: 200px; text-align: center; }
+    .nav-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 1.2rem; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: var(--r); transition: all 0.15s; }
     .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ─── AGENDA LIST ─── */
-    .agenda-day {
-      margin-bottom: 1.5rem;
-    }
-
-    .agenda-day-header {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 0.75rem;
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-
-    .agenda-day-date {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-      font-family: var(--font-display);
-    }
-
+    .agenda-day { margin-bottom: 1.5rem; }
+    .agenda-day-header { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); padding: 0.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+    .agenda-day-date { font-size: 1.1rem; font-weight: 700; color: var(--text); font-family: var(--font-display); }
     .agenda-day-label { color: var(--accent); }
-
-    .aula-row {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 0.9rem 1.2rem;
-      margin-bottom: 0.5rem;
-      display: flex; align-items: center; gap: 1rem;
-      flex-wrap: wrap;
-      transition: border-color 0.15s;
-    }
-
-    .aula-row:hover { border-color: var(--border); }
-
-    .aula-time {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--accent);
-      min-width: 45px;
-      font-weight: 700;
-    }
-
+    .aula-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 0.9rem 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .aula-time { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); min-width: 45px; font-weight: 700; }
     .aula-student { font-weight: 700; font-size: 0.95rem; flex: 1; min-width: 120px; }
-
-    .aula-tipo { }
-
-    .aula-status-group {
-      display: flex; gap: 0.4rem; flex-wrap: wrap;
-    }
-
-    .status-pill {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      padding: 0.25rem 0.6rem;
-      border-radius: 20px;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: all 0.15s;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
+    .aula-status-group { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .status-pill { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; padding: 0.25rem 0.6rem; border-radius: 20px; cursor: pointer; border: 1px solid transparent; transition: all 0.15s; text-transform: uppercase; white-space: nowrap; }
     .pill-dada { background: rgba(0,230,118,0.12); color: var(--success); border-color: rgba(0,230,118,0.3); }
     .pill-dada.active { background: var(--success); color: #000; }
     .pill-fp { background: rgba(255,77,0,0.1); color: var(--accent); border-color: rgba(255,77,0,0.3); }
@@ -452,177 +142,59 @@
     .pill-faj.active { background: var(--accent2); color: #000; }
     .pill-fanj { background: rgba(255,59,59,0.1); color: var(--danger); border-color: rgba(255,59,59,0.3); }
     .pill-fanj.active { background: var(--danger); color: #fff; }
-
-    .aula-obs-wrap {
-      width: 100%;
-      display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.3rem;
-    }
-
-    .aula-obs-wrap input {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      padding: 0.4rem 0.7rem;
-      flex: 1;
-      min-width: 150px;
-      outline: none;
-      border-radius: var(--r);
-      transition: border-color 0.2s;
-    }
-
+    .aula-obs-wrap { width: 100%; display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.3rem; }
+    .aula-obs-wrap input { background: var(--surface2); border: 1px solid var(--border); color: var(--text); font-family: var(--font-mono); font-size: 0.78rem; padding: 0.4rem 0.7rem; flex: 1; min-width: 150px; outline: none; border-radius: var(--r); transition: border-color 0.2s; }
     .aula-obs-wrap input:focus { border-color: var(--accent); }
 
-    /* ─── STATS ─── */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
+    /* RELATORIOS */
+    .rel-card { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; border-radius: var(--r); margin-bottom: 1rem; max-width: 620px; }
+    .rel-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .rel-card p { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6; }
 
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 1.1rem 1.3rem;
-      border-radius: var(--r);
-    }
-
-    .stat-label {
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-bottom: 0.4rem;
-    }
-
-    .stat-val {
-      font-size: 1.8rem;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .stat-val.orange { color: var(--accent); }
-    .stat-val.green { color: var(--success); }
-    .stat-val.yellow { color: var(--accent2); }
-
-    /* ─── EXPORT MODAL ─── */
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.75);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 500;
-      display: none;
-    }
-
-    .modal-overlay.open { display: flex; }
-
-    .modal {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 2rem;
-      width: min(500px, 90vw);
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-
-    .modal h3 {
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-    }
-
-    .modal-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
-
-    .student-check-list {
-      display: flex; flex-direction: column; gap: 0.5rem;
-      margin-top: 0.75rem;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-
-    .student-check-item {
-      display: flex; align-items: center; gap: 0.75rem;
-      padding: 0.5rem 0.75rem;
-      background: var(--surface2);
-      border-radius: var(--r);
-      cursor: pointer;
-    }
-
+    .student-check-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem; max-height: 200px; overflow-y: auto; }
+    .student-check-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem; background: var(--surface2); border-radius: var(--r); cursor: pointer; }
     .student-check-item input { accent-color: var(--accent); width: 15px; height: 15px; }
     .student-check-item label { cursor: pointer; font-size: 0.9rem; }
 
-    /* ─── NOTIF ─── */
-    .notif {
-      position: fixed; bottom: 2rem; right: 2rem;
-      background: var(--accent);
-      color: #fff;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--r);
-      transform: translateY(100px); opacity: 0;
-      transition: all 0.3s;
-      z-index: 9999;
-    }
-
+    .notif { position: fixed; bottom: 2rem; right: 2rem; background: var(--accent); color: #fff; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; padding: 0.75rem 1.5rem; border-radius: var(--r); transform: translateY(100px); opacity: 0; transition: all 0.3s; z-index: 9999; }
     .notif.show { transform: translateY(0); opacity: 1; }
 
-    /* ─── PDF ─── */
+    .empty-state { text-align: center; padding: 3rem 2rem; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.1em; }
+
+    /* PDF */
     @media print {
       body * { visibility: hidden; }
       #pdf-area, #pdf-area * { visibility: visible; }
       #pdf-area { position: absolute; left: 0; top: 0; width: 100%; background: #fff; }
     }
-
-    #pdf-area {
-      display: none;
-      background: #fff;
-      color: #000;
-      padding: 40px;
-      font-family: 'Syne', sans-serif;
-    }
-
-    .pdf-h { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid #000; }
-    .pdf-logo { font-size: 1.8rem; font-weight: 800; }
+    #pdf-area { display: none; background: #fff; color: #000; padding: 40px; font-family: 'Syne', sans-serif; font-size: 14px; }
+    .pdf-logo { font-size: 2rem; font-weight: 800; }
     .pdf-logo span { color: #ff4d00; }
+    .pdf-h { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid #000; }
     .pdf-meta { text-align: right; font-size: 0.8rem; color: #555; }
     .pdf-meta strong { color: #000; display: block; font-size: 1rem; }
     .pdf-section { margin-bottom: 1.5rem; }
-    .pdf-section h3 { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #999; margin-bottom: 0.5rem; font-family: 'Courier Prime', monospace; }
-    .pdf-section p { font-size: 0.95rem; }
-    .pdf-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.82rem; }
-    .pdf-table th { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: #999; padding: 0.5rem 0.5rem; border-bottom: 1px solid #ddd; text-align: left; font-family: 'Courier Prime', monospace; }
-    .pdf-table td { padding: 0.5rem 0.5rem; border-bottom: 1px solid #eee; }
+    .pdf-section-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #999; margin-bottom: 0.6rem; font-family: 'Courier Prime', monospace; border-bottom: 1px solid #eee; padding-bottom: 0.3rem; }
+    .pdf-table { width: 100%; border-collapse: collapse; margin-bottom: 0.5rem; font-size: 0.82rem; }
+    .pdf-table th { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: #999; padding: 0.4rem 0.5rem; border-bottom: 1px solid #ddd; text-align: left; font-family: 'Courier Prime', monospace; }
+    .pdf-table td { padding: 0.45rem 0.5rem; border-bottom: 1px solid #f0f0f0; }
     .pdf-table tr:last-child td { border-bottom: none; }
-    .pdf-totals { background: #f8f8f8; padding: 1rem; border: 1px solid #ddd; }
-    .pdf-total-row { display: flex; justify-content: space-between; padding: 0.25rem 0; font-size: 0.85rem; }
-    .pdf-total-row.main { font-weight: 700; font-size: 1rem; border-top: 1px solid #000; margin-top: 0.5rem; padding-top: 0.5rem; }
-    .pdf-footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 0.65rem; color: #aaa; font-family: 'Courier Prime', monospace; display: flex; justify-content: space-between; }
+    .pdf-table .right { text-align: right; font-family: 'Courier Prime', monospace; }
+    .pdf-summary-box { background: #f8f8f8; border: 1px solid #e0e0e0; padding: 1rem 1.2rem; max-width: 360px; margin-left: auto; }
+    .pdf-sum-row { display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0; font-size: 0.85rem; border-bottom: 1px solid #eee; }
+    .pdf-sum-row:last-child { border-bottom: none; }
+    .pdf-sum-row.total { font-weight: 700; font-size: 1rem; border-top: 2px solid #000; margin-top: 0.4rem; padding-top: 0.6rem; border-bottom: none; }
+    .pdf-sum-row.devolver { color: #cc4400; }
+    .pdf-sum-row.proximo { color: #005500; }
     .pdf-divider { border: none; border-top: 2px solid #000; margin: 2rem 0; }
+    .pdf-footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 0.65rem; color: #aaa; font-family: 'Courier Prime', monospace; display: flex; justify-content: space-between; }
 
-    /* ─── EMPTY ─── */
-    .empty-state {
-      text-align: center;
-      padding: 3rem 2rem;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-    }
-
-    /* ─── RESPONSIVE ─── */
     @media (max-width: 600px) {
       main { padding: 1rem; }
       header { padding: 0.75rem 1rem; }
       .logo { font-size: 1rem; }
       .month-label { min-width: 150px; font-size: 1.1rem; }
     }
-
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -632,13 +204,13 @@
 
 <!-- LOGIN -->
 <div id="login-screen">
-  <div class="login-icon">🥁</div>
+  <div class="login-icon">&#x1F941;</div>
   <div>
     <div class="login-title">Aulas de<br><span>Bateria</span></div>
-    <div class="login-sub" style="margin-top:0.5rem">Gestão de Alunos</div>
+    <div class="login-sub" style="margin-top:0.5rem">Gestao de Alunos</div>
   </div>
   <div class="login-box">
-    <input type="password" id="pin-input" placeholder="••••••" maxlength="20"
+    <input type="password" id="pin-input" placeholder="......" maxlength="20"
       onkeydown="if(event.key==='Enter') doLogin()" autocomplete="current-password" />
     <button class="login-btn" onclick="doLogin()">ENTRAR</button>
     <div class="login-error" id="login-error"></div>
@@ -648,34 +220,32 @@
 <!-- APP -->
 <div id="app">
   <header>
-    <div class="logo"><span class="logo-icon">🥁</span> Aulas de <span>Bateria</span></div>
+    <div class="logo">&#x1F941; Aulas de <span>Bateria</span></div>
     <div class="header-nav">
-      <button class="tab-btn active" onclick="switchTab('agenda', this)">Agenda</button>
-      <button class="tab-btn" onclick="switchTab('alunos', this)">Alunos</button>
-      <button class="tab-btn" onclick="switchTab('relatorios', this)">Relatórios</button>
+      <button class="tab-btn active" onclick="switchTab('agenda',this)">Agenda</button>
+      <button class="tab-btn" onclick="switchTab('alunos',this)">Alunos</button>
+      <button class="tab-btn" onclick="switchTab('relatorios',this)">Relatorios</button>
     </div>
     <button class="btn btn-sm" onclick="doLogout()" style="margin-left:auto">Sair</button>
   </header>
 
   <main>
 
-    <!-- ═══ AGENDA ═══ -->
+    <!-- AGENDA -->
     <div class="view active" id="view-agenda">
       <div class="agenda-header">
         <div class="month-nav">
-          <button class="nav-btn" onclick="changeMonth(-1)">‹</button>
+          <button class="nav-btn" onclick="changeMonth(-1)">&#8249;</button>
           <div class="month-label" id="month-label"></div>
-          <button class="nav-btn" onclick="changeMonth(1)">›</button>
+          <button class="nav-btn" onclick="changeMonth(1)">&#8250;</button>
         </div>
         <button class="btn btn-sm" onclick="goToday()">Hoje</button>
       </div>
       <div id="agenda-body"></div>
     </div>
 
-    <!-- ═══ ALUNOS ═══ -->
+    <!-- ALUNOS -->
     <div class="view" id="view-alunos">
-
-      <!-- List -->
       <div id="subview-list">
         <div class="sec-header">
           <div class="sec-title">Alunos</div>
@@ -685,17 +255,22 @@
         <div class="students-grid" id="students-grid"></div>
       </div>
 
-      <!-- Form -->
       <div id="subview-form" style="display:none">
         <div class="form-header">
-          <button class="btn btn-sm" onclick="showAlunosList()">← Voltar</button>
+          <button class="btn btn-sm" onclick="showAlunosList()">Voltar</button>
           <h2 id="aluno-form-title">Novo Aluno</h2>
         </div>
-
         <div class="form-grid">
           <div class="field">
             <label>Nome</label>
-            <input type="text" id="a-nome" placeholder="Nome completo do aluno" />
+            <input type="text" id="a-nome" placeholder="Nome completo" />
+          </div>
+          <div class="field">
+            <label>Tipo</label>
+            <select id="a-tipo">
+              <option value="escola">Escola</option>
+              <option value="particular">Particular</option>
+            </select>
           </div>
           <div class="field">
             <label>Dia(s) da Semana</label>
@@ -705,7 +280,7 @@
               <label class="checkbox-label"><input type="checkbox" value="3" /> Qua</label>
               <label class="checkbox-label"><input type="checkbox" value="4" /> Qui</label>
               <label class="checkbox-label"><input type="checkbox" value="5" /> Sex</label>
-              <label class="checkbox-label"><input type="checkbox" value="6" /> Sáb</label>
+              <label class="checkbox-label"><input type="checkbox" value="6" /> Sab</label>
               <label class="checkbox-label"><input type="checkbox" value="0" /> Dom</label>
             </div>
           </div>
@@ -714,26 +289,22 @@
             <input type="time" id="a-hora" />
           </div>
           <div class="field">
-            <label>Valor da Aula (€)</label>
-            <input type="number" id="a-valor" min="0" step="0.5" placeholder="0.00" />
+            <label>Valor por Aula - o aluno paga (EUR)</label>
+            <input type="number" id="a-valor" min="0" step="0.01" placeholder="0.00" oninput="calcLiquido()" />
           </div>
           <div class="field">
-            <label>% da Escola</label>
-            <input type="number" id="a-pct" min="0" max="100" step="1" placeholder="0" />
+            <label>Valor para a Escola por Aula (EUR)</label>
+            <input type="number" id="a-escola" min="0" step="0.01" placeholder="0.00" oninput="calcLiquido()" />
           </div>
           <div class="field">
-            <label>Tipo</label>
-            <select id="a-tipo">
-              <option value="escola">Escola</option>
-              <option value="particular">Particular</option>
-            </select>
+            <label>Tu Recebes por Aula (EUR) - calculado</label>
+            <input type="number" id="a-liquido" readonly placeholder="0.00" />
           </div>
           <div class="field" style="grid-column:span 2">
-            <label>Notas / Observações</label>
-            <textarea id="a-notas" placeholder="Notas gerais sobre o aluno..."></textarea>
+            <label>Notas</label>
+            <textarea id="a-notas" placeholder="Notas gerais..."></textarea>
           </div>
         </div>
-
         <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
           <button class="btn btn-primary" onclick="saveAluno()">Guardar</button>
           <button class="btn btn-danger" id="btn-del-aluno" onclick="deleteAluno()" style="margin-left:auto;display:none">Eliminar Aluno</button>
@@ -741,602 +312,401 @@
       </div>
     </div>
 
-    <!-- ═══ RELATÓRIOS ═══ -->
+    <!-- RELATORIOS -->
     <div class="view" id="view-relatorios">
       <div class="sec-header">
-        <div class="sec-title">Relatórios</div>
+        <div class="sec-title">Relatorios</div>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:1rem;max-width:600px">
-
-        <!-- Relatório Individual -->
-        <div style="background:var(--surface);border:1px solid var(--border);padding:1.5rem;border-radius:var(--r)">
-          <div style="font-size:1.1rem;font-weight:700;margin-bottom:0.3rem">Relatório Individual</div>
-          <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem">PDF por aluno com resumo de aulas e valor a pagar</div>
-          <div class="form-grid" style="grid-template-columns:1fr 1fr">
-            <div class="field">
-              <label>Aluno</label>
-              <select id="rel-aluno"></select>
-            </div>
-            <div class="field">
-              <label>Mês</label>
-              <input type="month" id="rel-mes-ind" />
-            </div>
+      <div class="rel-card">
+        <h3>Relatorio Individual do Aluno</h3>
+        <p>
+          Resumo do mes selecionado: aulas dadas e faltas.<br>
+          Calcula automaticamente:<br>
+          - Valor a devolver (faltas justificadas)<br>
+          - Aulas programadas no mes seguinte x valor/aula<br>
+          - Total a cobrar (mes seguinte menos devolucao)
+        </p>
+        <div class="form-grid" style="grid-template-columns:1fr 1fr;margin-bottom:1rem">
+          <div class="field">
+            <label>Aluno</label>
+            <select id="rel-aluno"></select>
           </div>
-          <button class="btn btn-primary" onclick="exportIndividual()">Exportar PDF</button>
+          <div class="field">
+            <label>Mes em curso (das aulas)</label>
+            <input type="month" id="rel-mes" />
+          </div>
         </div>
+        <button class="btn btn-primary" onclick="exportIndividual()">Exportar PDF</button>
+      </div>
 
-        <!-- Relatório Escola -->
-        <div style="background:var(--surface);border:1px solid var(--border);padding:1.5rem;border-radius:var(--r)">
-          <div style="font-size:1.1rem;font-weight:700;margin-bottom:0.3rem">Relatório Escola</div>
-          <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem">PDF coletivo com todos os alunos da escola selecionados</div>
-          <div class="field" style="margin-bottom:1rem">
-            <label>Mês</label>
-            <input type="month" id="rel-mes-escola" style="max-width:200px" />
-          </div>
-          <div class="field" style="margin-bottom:1rem">
-            <label>Selecionar Alunos da Escola</label>
-            <div class="student-check-list" id="escola-check-list"></div>
-          </div>
-          <button class="btn btn-primary" onclick="exportEscola()">Exportar PDF Escola</button>
+      <div class="rel-card">
+        <h3>Relatorio para a Escola</h3>
+        <p>
+          Relatorio coletivo para entregar a escola.<br>
+          Inclui aulas dadas, faltas e valores por aluno.
+        </p>
+        <div class="field" style="margin-bottom:1rem;max-width:200px">
+          <label>Mes</label>
+          <input type="month" id="rel-mes-escola" />
         </div>
+        <div class="field" style="margin-bottom:1rem">
+          <label>Selecionar Alunos</label>
+          <div class="student-check-list" id="escola-check-list"></div>
+        </div>
+        <button class="btn btn-primary" onclick="exportEscola()">Exportar PDF Escola</button>
       </div>
     </div>
 
   </main>
 </div>
 
-<!-- EXPORT MODAL -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal" id="modal-content"></div>
-</div>
-
-<!-- PDF AREA -->
 <div id="pdf-area"></div>
-
-<!-- NOTIF -->
 <div class="notif" id="notif"></div>
 
 <script>
-// ─── CONFIG ─────────────────────────────────────────────────────────
-const PASSWORD = 'bateria2024'; // Altera aqui a tua password
+const PASSWORD = 'bateria2024';
 const SK_ALUNOS = 'ab_alunos';
-const SK_AULAS = 'ab_aulas';
+const SK_AULAS  = 'ab_aulas';
+const DIAS_NOME = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
+const DIAS_LONG = ['Domingo','Segunda-feira','Terca-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'];
+const MESES = ['Janeiro','Fevereiro','Marco','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 
-const DIAS_NOME = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-const DIAS_LONG = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
-const MESES = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+let alunos = [], aulas = [], agendaDate = new Date(), editingAlunoId = null;
 
-// ─── STATE ──────────────────────────────────────────────────────────
-let alunos = [];
-let aulas = []; // { id, alunoId, data (YYYY-MM-DD), status ('dada'|'fp'|'faj'|'fanj'), obs, exp }
-let agendaDate = new Date();
-let editingAlunoId = null;
-
-// ─── AUTH ────────────────────────────────────────────────────────────
 function doLogin() {
-  const val = document.getElementById('pin-input').value;
-  if (val === PASSWORD) {
+  if (document.getElementById('pin-input').value === PASSWORD) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
-    sessionStorage.setItem('ab_auth', '1');
-    loadData();
-    initAgenda();
-    renderAlunos();
-    initRelatorios();
+    sessionStorage.setItem('ab_auth','1');
+    loadData(); initAgenda(); renderAlunos(); initRelatorios();
   } else {
     document.getElementById('login-error').textContent = 'Password incorreta';
     document.getElementById('pin-input').value = '';
-    setTimeout(() => document.getElementById('login-error').textContent = '', 2000);
+    setTimeout(()=>document.getElementById('login-error').textContent='', 2000);
   }
 }
+function doLogout() { sessionStorage.removeItem('ab_auth'); location.reload(); }
 
-function doLogout() {
-  sessionStorage.removeItem('ab_auth');
-  location.reload();
-}
-
-// ─── DATA ────────────────────────────────────────────────────────────
 function loadData() {
-  alunos = JSON.parse(localStorage.getItem(SK_ALUNOS) || '[]');
-  aulas = JSON.parse(localStorage.getItem(SK_AULAS) || '[]');
+  alunos = JSON.parse(localStorage.getItem(SK_ALUNOS)||'[]');
+  aulas  = JSON.parse(localStorage.getItem(SK_AULAS)||'[]');
 }
+function saveAlunos()    { localStorage.setItem(SK_ALUNOS, JSON.stringify(alunos)); }
+function saveAulasData() { localStorage.setItem(SK_AULAS,  JSON.stringify(aulas));  }
+function genId() { return Date.now().toString(36)+Math.random().toString(36).slice(2,5); }
+function toDateStr(y,m,d) { return y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0'); }
 
-function saveAlunos() { localStorage.setItem(SK_ALUNOS, JSON.stringify(alunos)); }
-function saveAulasData() { localStorage.setItem(SK_AULAS, JSON.stringify(aulas)); }
-
-function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 5); }
-
-// ─── TABS ────────────────────────────────────────────────────────────
-function switchTab(tab, el) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+function switchTab(tab,el) {
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-' + tab).classList.add('active');
-  if (tab === 'agenda') renderAgenda();
-  if (tab === 'alunos') { renderAlunos(); showAlunosList(); }
-  if (tab === 'relatorios') initRelatorios();
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+tab).classList.add('active');
+  if(tab==='agenda') renderAgenda();
+  if(tab==='alunos') { renderAlunos(); showAlunosList(); }
+  if(tab==='relatorios') initRelatorios();
 }
 
-// ─── AGENDA ──────────────────────────────────────────────────────────
-function initAgenda() {
-  agendaDate = new Date();
-  renderAgenda();
-}
-
-function changeMonth(dir) {
-  agendaDate.setMonth(agendaDate.getMonth() + dir);
-  renderAgenda();
-}
-
-function goToday() {
-  agendaDate = new Date();
-  renderAgenda();
-}
+function initAgenda() { agendaDate=new Date(); renderAgenda(); }
+function changeMonth(d) { agendaDate.setMonth(agendaDate.getMonth()+d); renderAgenda(); }
+function goToday() { agendaDate=new Date(); renderAgenda(); }
 
 function renderAgenda() {
-  const y = agendaDate.getFullYear();
-  const m = agendaDate.getMonth();
-  document.getElementById('month-label').textContent = `${MESES[m]} ${y}`;
-
-  // Build all days of month
-  const daysInMonth = new Date(y, m + 1, 0).getDate();
-  const today = new Date();
-  today.setHours(0,0,0,0);
-
-  // Group by day, only show days that have at least one student scheduled
-  const dayMap = {};
-
-  for (let d = 1; d <= daysInMonth; d++) {
-    const date = new Date(y, m, d);
-    const dow = date.getDay();
-    const dateStr = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-
-    // Find students with aulas on this weekday
-    const studentsThisDay = alunos.filter(a => a.dias && a.dias.includes(String(dow)));
-
-    if (studentsThisDay.length > 0) {
-      dayMap[dateStr] = { date, studentsThisDay };
-    }
+  const y=agendaDate.getFullYear(), m=agendaDate.getMonth();
+  document.getElementById('month-label').textContent = MESES[m]+' '+y;
+  const daysInMonth=new Date(y,m+1,0).getDate();
+  const today=new Date(); today.setHours(0,0,0,0);
+  const dayMap={};
+  for(let d=1;d<=daysInMonth;d++){
+    const date=new Date(y,m,d), dow=date.getDay();
+    const dateStr=toDateStr(y,m+1,d);
+    const students=alunos.filter(a=>(a.dias||[]).includes(String(dow)));
+    if(students.length) dayMap[dateStr]={date,students};
   }
-
-  const body = document.getElementById('agenda-body');
-
-  if (Object.keys(dayMap).length === 0) {
-    body.innerHTML = `<div class="empty-state">Nenhuma aula programada neste mês.<br>Adiciona alunos com dias da semana definidos.</div>`;
+  const body=document.getElementById('agenda-body');
+  if(!Object.keys(dayMap).length){
+    body.innerHTML='<div class="empty-state">Nenhuma aula programada neste mes.<br>Adiciona alunos com dias da semana definidos.</div>';
     return;
   }
-
-  body.innerHTML = Object.entries(dayMap).map(([dateStr, { date, studentsThisDay }]) => {
-    const dow = date.getDay();
-    const d = date.getDate();
-    const isToday = date.getTime() === today.getTime();
-
-    const aulaRows = studentsThisDay
-      .sort((a,b) => (a.hora||'').localeCompare(b.hora||''))
-      .map(aluno => {
-        const aulaReg = aulas.find(au => au.alunoId === aluno.id && au.data === dateStr) || {};
-        const aulaId = aulaReg.id || null;
-        const status = aulaReg.status || '';
-        const obs = aulaReg.obs || '';
-        const exp = aulaReg.exp || '';
-
-        return `
-          <div class="aula-row" data-date="${dateStr}" data-aluno="${aluno.id}">
-            <div class="aula-time">${aluno.hora || '--:--'}</div>
-            <div class="aula-student">${esc(aluno.nome)}</div>
-            <div class="tag ${aluno.tipo === 'escola' ? 'tag-escola' : 'tag-particular'}">${aluno.tipo === 'escola' ? 'Escola' : 'Particular'}</div>
-            <div class="aula-status-group">
-              <span class="status-pill pill-dada ${status==='dada'?'active':''}" onclick="setAulaStatus('${dateStr}','${aluno.id}','dada',this)">Dada</span>
-              <span class="status-pill pill-fp ${status==='fp'?'active':''}" onclick="setAulaStatus('${dateStr}','${aluno.id}','fp',this)">Falta Prof.</span>
-              <span class="status-pill pill-faj ${status==='faj'?'active':''}" onclick="setAulaStatus('${dateStr}','${aluno.id}','faj',this)">Falta Aluno Just.</span>
-              <span class="status-pill pill-fanj ${status==='fanj'?'active':''}" onclick="setAulaStatus('${dateStr}','${aluno.id}','fanj',this)">Falta Aluno N/Just.</span>
-            </div>
-            <div class="aula-obs-wrap">
-              <input type="text" placeholder="Matéria dada..." value="${esc(obs)}" onchange="setAulaObs('${dateStr}','${aluno.id}','obs',this.value)" />
-              <input type="text" placeholder="Observações..." value="${esc(exp)}" onchange="setAulaObs('${dateStr}','${aluno.id}','exp',this.value)" />
-            </div>
-          </div>`;
-      }).join('');
-
-    return `
-      <div class="agenda-day">
-        <div class="agenda-day-header">
-          <span class="agenda-day-date" style="${isToday ? 'color:var(--accent)' : ''}">${d}</span>
-          <span class="agenda-day-label">${DIAS_LONG[dow]}</span>
-          ${isToday ? '<span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent);letter-spacing:0.1em">HOJE</span>' : ''}
-        </div>
-        ${aulaRows}
-      </div>`;
-  }).join('');
-}
-
-function setAulaStatus(dateStr, alunoId, status, el) {
-  // Toggle
-  let reg = aulas.find(a => a.alunoId === alunoId && a.data === dateStr);
-  if (!reg) {
-    reg = { id: genId(), alunoId, data: dateStr, status: '', obs: '', exp: '' };
-    aulas.push(reg);
-  }
-  reg.status = reg.status === status ? '' : status;
-  saveAulasData();
-
-  // Update pills in this row
-  const row = el.closest('.aula-row');
-  row.querySelectorAll('.status-pill').forEach(p => p.classList.remove('active'));
-  if (reg.status) {
-    const map = { dada: 'pill-dada', fp: 'pill-fp', faj: 'pill-faj', fanj: 'pill-fanj' };
-    row.querySelector('.' + map[reg.status])?.classList.add('active');
-  }
-}
-
-function setAulaObs(dateStr, alunoId, field, val) {
-  let reg = aulas.find(a => a.alunoId === alunoId && a.data === dateStr);
-  if (!reg) {
-    reg = { id: genId(), alunoId, data: dateStr, status: '', obs: '', exp: '' };
-    aulas.push(reg);
-  }
-  reg[field] = val;
-  saveAulasData();
-}
-
-// ─── ALUNOS ──────────────────────────────────────────────────────────
-function showAlunosList() {
-  document.getElementById('subview-list').style.display = 'block';
-  document.getElementById('subview-form').style.display = 'none';
-  renderAlunos();
-}
-
-function showNewAluno() {
-  editingAlunoId = null;
-  document.getElementById('aluno-form-title').textContent = 'Novo Aluno';
-  document.getElementById('btn-del-aluno').style.display = 'none';
-  document.getElementById('a-nome').value = '';
-  document.getElementById('a-hora').value = '';
-  document.getElementById('a-valor').value = '';
-  document.getElementById('a-pct').value = '';
-  document.getElementById('a-tipo').value = 'escola';
-  document.getElementById('a-notas').value = '';
-  document.querySelectorAll('#dias-group input[type=checkbox]').forEach(cb => cb.checked = false);
-  document.getElementById('subview-list').style.display = 'none';
-  document.getElementById('subview-form').style.display = 'block';
-}
-
-function showEditAluno(id) {
-  const a = alunos.find(x => x.id === id);
-  if (!a) return;
-  editingAlunoId = id;
-  document.getElementById('aluno-form-title').textContent = 'Editar Aluno';
-  document.getElementById('btn-del-aluno').style.display = 'block';
-  document.getElementById('a-nome').value = a.nome || '';
-  document.getElementById('a-hora').value = a.hora || '';
-  document.getElementById('a-valor').value = a.valor || '';
-  document.getElementById('a-pct').value = a.pct || '';
-  document.getElementById('a-tipo').value = a.tipo || 'escola';
-  document.getElementById('a-notas').value = a.notas || '';
-  document.querySelectorAll('#dias-group input[type=checkbox]').forEach(cb => {
-    cb.checked = (a.dias || []).includes(cb.value);
-  });
-  document.getElementById('subview-list').style.display = 'none';
-  document.getElementById('subview-form').style.display = 'block';
-}
-
-function saveAluno() {
-  const nome = document.getElementById('a-nome').value.trim();
-  if (!nome) { showNotif('Preenche o nome do aluno'); return; }
-
-  const dias = Array.from(document.querySelectorAll('#dias-group input[type=checkbox]:checked')).map(cb => cb.value);
-
-  const obj = {
-    id: editingAlunoId || genId(),
-    nome,
-    dias,
-    hora: document.getElementById('a-hora').value,
-    valor: parseFloat(document.getElementById('a-valor').value) || 0,
-    pct: parseFloat(document.getElementById('a-pct').value) || 0,
-    tipo: document.getElementById('a-tipo').value,
-    notas: document.getElementById('a-notas').value.trim(),
-  };
-
-  if (editingAlunoId) {
-    const idx = alunos.findIndex(a => a.id === editingAlunoId);
-    alunos[idx] = obj;
-  } else {
-    alunos.push(obj);
-  }
-
-  saveAlunos();
-  showNotif('Aluno guardado!');
-  showAlunosList();
-}
-
-function deleteAluno() {
-  if (!editingAlunoId) return;
-  if (!confirm('Eliminar este aluno e todas as suas aulas?')) return;
-  alunos = alunos.filter(a => a.id !== editingAlunoId);
-  aulas = aulas.filter(a => a.alunoId !== editingAlunoId);
-  saveAlunos(); saveAulasData();
-  showNotif('Aluno eliminado');
-  showAlunosList();
-}
-
-function renderAlunos() {
-  const grid = document.getElementById('students-grid');
-  const stats = document.getElementById('alunos-stats');
-
-  const totalAlunos = alunos.length;
-  const escola = alunos.filter(a => a.tipo === 'escola').length;
-  const particulares = alunos.filter(a => a.tipo === 'particular').length;
-  const totalMensal = alunos.reduce((s, a) => {
-    const diasSem = (a.dias || []).length;
-    return s + (a.valor || 0) * diasSem * 4;
-  }, 0);
-
-  stats.innerHTML = `
-    <div class="stat-card"><div class="stat-label">Total Alunos</div><div class="stat-val orange">${totalAlunos}</div></div>
-    <div class="stat-card"><div class="stat-label">Escola</div><div class="stat-val yellow">${escola}</div></div>
-    <div class="stat-card"><div class="stat-label">Particulares</div><div class="stat-val orange">${particulares}</div></div>
-    <div class="stat-card"><div class="stat-label">Receita Est. Mensal</div><div class="stat-val green">${fmt(totalMensal)}</div></div>
-  `;
-
-  if (!alunos.length) {
-    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">Nenhum aluno ainda.<br>Clica em "+ Novo Aluno" para começar.</div>`;
-    return;
-  }
-
-  grid.innerHTML = alunos.map(a => {
-    const diasStr = (a.dias || []).sort().map(d => DIAS_NOME[parseInt(d)]).join(', ');
-    const aulasCount = aulas.filter(au => au.alunoId === a.id && au.status === 'dada').length;
-    return `
-      <div class="student-card ${a.tipo}" onclick="showEditAluno('${a.id}')">
-        <div class="student-name">${esc(a.nome)}</div>
-        <div class="student-meta">
-          <span>📅 ${diasStr || '—'} ${a.hora ? '· ' + a.hora : ''}</span>
-          ${a.tipo === 'escola' && a.pct ? `<span>🏫 ${a.pct}% para a escola</span>` : ''}
-        </div>
-        <div class="student-tags">
-          <span class="tag ${a.tipo === 'escola' ? 'tag-escola' : 'tag-particular'}">${a.tipo === 'escola' ? 'Escola' : 'Particular'}</span>
-        </div>
-        <div class="student-footer">
-          <span class="student-valor">${fmt(a.valor || 0)}/aula</span>
-          <span class="aulas-count">${aulasCount} aulas dadas</span>
-        </div>
-      </div>`;
-  }).join('');
-}
-
-// ─── RELATÓRIOS ──────────────────────────────────────────────────────
-function initRelatorios() {
-  // Populate aluno select
-  const sel = document.getElementById('rel-aluno');
-  sel.innerHTML = alunos.map(a => `<option value="${a.id}">${esc(a.nome)}</option>`).join('');
-
-  // Default month = current
-  const now = new Date();
-  const mesStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
-  document.getElementById('rel-mes-ind').value = mesStr;
-  document.getElementById('rel-mes-escola').value = mesStr;
-
-  // Escola check list
-  const list = document.getElementById('escola-check-list');
-  const escolaAlunos = alunos.filter(a => a.tipo === 'escola');
-  list.innerHTML = escolaAlunos.length
-    ? escolaAlunos.map(a => `
-        <div class="student-check-item">
-          <input type="checkbox" id="chk-${a.id}" value="${a.id}" checked />
-          <label for="chk-${a.id}">${esc(a.nome)}</label>
-        </div>`).join('')
-    : `<div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);padding:0.5rem">Nenhum aluno do tipo Escola.</div>`;
-}
-
-function getAulasMes(alunoId, mesStr) {
-  // mesStr = YYYY-MM
-  return aulas.filter(a => a.alunoId === alunoId && a.data.startsWith(mesStr));
-}
-
-function exportIndividual() {
-  const alunoId = document.getElementById('rel-aluno').value;
-  const mes = document.getElementById('rel-mes-ind').value;
-  if (!alunoId || !mes) { showNotif('Seleciona aluno e mês'); return; }
-
-  const aluno = alunos.find(a => a.id === alunoId);
-  if (!aluno) return;
-
-  const [y, m] = mes.split('-');
-  const mesLabel = `${MESES[parseInt(m)-1]} ${y}`;
-  const aulasDoMes = getAulasMes(alunoId, mes);
-
-  // Build all scheduled days for this month
-  const daysInMonth = new Date(parseInt(y), parseInt(m), 0).getDate();
-  const programadas = [];
-  for (let d = 1; d <= daysInMonth; d++) {
-    const date = new Date(parseInt(y), parseInt(m)-1, d);
-    const dow = date.getDay();
-    const dateStr = `${y}-${m}-${String(d).padStart(2,'0')}`;
-    if ((aluno.dias || []).includes(String(dow))) {
-      const reg = aulasDoMes.find(a => a.data === dateStr) || {};
-      programadas.push({ dateStr, d, dow, status: reg.status || '', obs: reg.obs || '', exp: reg.exp || '' });
-    }
-  }
-
-  const dadas = programadas.filter(a => a.status === 'dada').length;
-  const faltaAluno = programadas.filter(a => a.status === 'faj' || a.status === 'fanj').length;
-  const faltaAlunoJust = programadas.filter(a => a.status === 'faj').length;
-  const faltaAlunoNJ = programadas.filter(a => a.status === 'fanj').length;
-  const faltaProf = programadas.filter(a => a.status === 'fp').length;
-  const semRegisto = programadas.filter(a => !a.status).length;
-
-  const valorPagar = dadas * (aluno.valor || 0);
-  const valorEscola = valorPagar * ((aluno.pct || 0) / 100);
-  const valorLiquido = valorPagar - valorEscola;
-
-  const rows = programadas.map(p => {
-    const statusLabels = { dada: 'Dada', fp: 'Falta Professor', faj: 'Falta Aluno (Just.)', fanj: 'Falta Aluno (N/Just.)', '': '—' };
-    return `<tr>
-      <td>${p.d} ${DIAS_NOME[p.dow]}</td>
-      <td>${statusLabels[p.status] || '—'}</td>
-      <td>${esc(p.obs) || '—'}</td>
-      <td>${esc(p.exp) || '—'}</td>
-    </tr>`;
-  }).join('');
-
-  const pctLine = aluno.tipo === 'escola' && aluno.pct
-    ? `<div class="pdf-total-row"><span>Percentagem Escola (${aluno.pct}%)</span><span>- ${fmt(valorEscola)}</span></div>
-       <div class="pdf-total-row main"><span>Valor Líquido</span><span>${fmt(valorLiquido)}</span></div>`
-    : `<div class="pdf-total-row main"><span>Total a Pagar</span><span>${fmt(valorPagar)}</span></div>`;
-
-  const area = document.getElementById('pdf-area');
-  area.innerHTML = `
-    <div class="pdf-h">
-      <div><div class="pdf-logo">Aulas de <span>Bateria</span></div><div style="font-size:0.7rem;color:#999;font-family:'Courier Prime',monospace;letter-spacing:0.15em;margin-top:0.2rem">RELATÓRIO MENSAL</div></div>
-      <div class="pdf-meta"><strong>${mesLabel}</strong><div>${esc(aluno.nome)}</div><div>${aluno.tipo === 'escola' ? 'Aluno de Escola' : 'Aluno Particular'}</div></div>
-    </div>
-    <div class="pdf-section">
-      <h3>Resumo</h3>
-      <table class="pdf-table">
-        <tr><th>Aulas Dadas</th><th>Falta Aluno (Just.)</th><th>Falta Aluno (N/Just.)</th><th>Falta Professor</th><th>Sem Registo</th></tr>
-        <tr><td>${dadas}</td><td>${faltaAlunoJust}</td><td>${faltaAlunoNJ}</td><td>${faltaProf}</td><td>${semRegisto}</td></tr>
-      </table>
-    </div>
-    <div class="pdf-section">
-      <h3>Detalhe de Aulas — ${mesLabel}</h3>
-      <table class="pdf-table">
-        <thead><tr><th>Data</th><th>Estado</th><th>Matéria</th><th>Observações</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>
-    <div class="pdf-section">
-      <h3>Pagamento</h3>
-      <div class="pdf-totals">
-        <div class="pdf-total-row"><span>Valor por Aula</span><span>${fmt(aluno.valor || 0)}</span></div>
-        <div class="pdf-total-row"><span>Aulas Dadas</span><span>${dadas}</span></div>
-        <div class="pdf-total-row"><span>Total Bruto</span><span>${fmt(valorPagar)}</span></div>
-        ${pctLine}
-      </div>
-    </div>
-    <div class="pdf-footer"><span>Aulas de Bateria</span><span>Gerado em ${new Date().toLocaleDateString('pt-PT')}</span></div>
-  `;
-
-  area.style.display = 'block';
-  window.print();
-  area.style.display = 'none';
-}
-
-function exportEscola() {
-  const mes = document.getElementById('rel-mes-escola').value;
-  if (!mes) { showNotif('Seleciona um mês'); return; }
-
-  const checked = Array.from(document.querySelectorAll('#escola-check-list input:checked')).map(cb => cb.value);
-  if (!checked.length) { showNotif('Seleciona pelo menos um aluno'); return; }
-
-  const [y, m] = mes.split('-');
-  const mesLabel = `${MESES[parseInt(m)-1]} ${y}`;
-  const daysInMonth = new Date(parseInt(y), parseInt(m), 0).getDate();
-
-  let blocksHtml = '';
-
-  checked.forEach((alunoId, idx) => {
-    const aluno = alunos.find(a => a.id === alunoId);
-    if (!aluno) return;
-
-    const aulasDoMes = getAulasMes(alunoId, mes);
-    const programadas = [];
-    for (let d = 1; d <= daysInMonth; d++) {
-      const date = new Date(parseInt(y), parseInt(m)-1, d);
-      const dow = date.getDay();
-      const dateStr = `${y}-${m}-${String(d).padStart(2,'0')}`;
-      if ((aluno.dias || []).includes(String(dow))) {
-        const reg = aulasDoMes.find(a => a.data === dateStr) || {};
-        programadas.push({ dateStr, d, dow, status: reg.status || '', obs: reg.obs || '' });
-      }
-    }
-
-    const dadas = programadas.filter(a => a.status === 'dada').length;
-    const faj = programadas.filter(a => a.status === 'faj').length;
-    const fanj = programadas.filter(a => a.status === 'fanj').length;
-    const fp = programadas.filter(a => a.status === 'fp').length;
-    const valorBruto = dadas * (aluno.valor || 0);
-    const valorEscola = valorBruto * ((aluno.pct || 0) / 100);
-
-    const rows = programadas.map(p => {
-      const sl = { dada: 'Dada', fp: 'Falta Prof.', faj: 'F. Aluno Just.', fanj: 'F. Aluno N/Just.', '': '—' };
-      return `<tr><td>${p.d} ${DIAS_NOME[p.dow]}</td><td>${sl[p.status]||'—'}</td><td>${esc(p.obs)||'—'}</td></tr>`;
+  body.innerHTML=Object.entries(dayMap).map(([dateStr,{date,students}])=>{
+    const dow=date.getDay(), d=date.getDate();
+    const isToday=date.getTime()===today.getTime();
+    const rows=students.sort((a,b)=>(a.hora||'').localeCompare(b.hora||'')).map(aluno=>{
+      const reg=aulas.find(au=>au.alunoId===aluno.id&&au.data===dateStr)||{};
+      const status=reg.status||'', obs=reg.obs||'', exp=reg.exp||'';
+      return '<div class="aula-row">'+
+        '<div class="aula-time">'+(aluno.hora||'--:--')+'</div>'+
+        '<div class="aula-student">'+esc(aluno.nome)+'</div>'+
+        '<span class="tag '+(aluno.tipo==='escola'?'tag-escola':'tag-particular')+'">'+(aluno.tipo==='escola'?'Escola':'Particular')+'</span>'+
+        '<div class="aula-status-group">'+
+        '<span class="status-pill pill-dada '+(status==='dada'?'active':'')+'" onclick="setStatus(\''+dateStr+'\',\''+aluno.id+'\',\'dada\',this)">Dada</span>'+
+        '<span class="status-pill pill-fp '+(status==='fp'?'active':'')+'" onclick="setStatus(\''+dateStr+'\',\''+aluno.id+'\',\'fp\',this)">Falta Prof.</span>'+
+        '<span class="status-pill pill-faj '+(status==='faj'?'active':'')+'" onclick="setStatus(\''+dateStr+'\',\''+aluno.id+'\',\'faj\',this)">Falta Aluno Just.</span>'+
+        '<span class="status-pill pill-fanj '+(status==='fanj'?'active':'')+'" onclick="setStatus(\''+dateStr+'\',\''+aluno.id+'\',\'fanj\',this)">Falta Aluno N/Just.</span>'+
+        '</div>'+
+        '<div class="aula-obs-wrap">'+
+        '<input type="text" placeholder="Materia dada..." value="'+esc(obs)+'" onchange="setObs(\''+dateStr+'\',\''+aluno.id+'\',\'obs\',this.value)" />'+
+        '<input type="text" placeholder="Observacoes..." value="'+esc(exp)+'" onchange="setObs(\''+dateStr+'\',\''+aluno.id+'\',\'exp\',this.value)" />'+
+        '</div></div>';
     }).join('');
+    return '<div class="agenda-day">'+
+      '<div class="agenda-day-header">'+
+      '<span class="agenda-day-date" style="'+(isToday?'color:var(--accent)':'')+'">'+ d+'</span>'+
+      '<span class="agenda-day-label">'+DIAS_LONG[dow]+'</span>'+
+      (isToday?'<span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent);letter-spacing:0.1em">HOJE</span>':'')+
+      '</div>'+rows+'</div>';
+  }).join('');
+}
 
-    blocksHtml += `
-      ${idx > 0 ? '<hr class="pdf-divider" />' : ''}
-      <div class="pdf-section">
-        <h3>Aluno</h3>
-        <p style="font-size:1.1rem;font-weight:700">${esc(aluno.nome)}</p>
-        <p style="font-size:0.8rem;color:#555;margin-top:0.2rem">${(aluno.dias||[]).sort().map(d=>DIAS_NOME[parseInt(d)]).join(', ')} · ${aluno.hora||''} · ${fmt(aluno.valor||0)}/aula</p>
-      </div>
-      <table class="pdf-table">
-        <thead><tr><th>Resumo</th><th>Dadas</th><th>F. Aluno Just.</th><th>F. Aluno N/Just.</th><th>F. Prof.</th></tr></thead>
-        <tbody><tr><td></td><td>${dadas}</td><td>${faj}</td><td>${fanj}</td><td>${fp}</td></tr></tbody>
-      </table>
-      <table class="pdf-table">
-        <thead><tr><th>Data</th><th>Estado</th><th>Matéria</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-      <div class="pdf-totals" style="max-width:300px">
-        <div class="pdf-total-row"><span>Total Bruto</span><span>${fmt(valorBruto)}</span></div>
-        <div class="pdf-total-row"><span>% Escola (${aluno.pct||0}%)</span><span>${fmt(valorEscola)}</span></div>
-        <div class="pdf-total-row main"><span>Valor p/ Escola</span><span>${fmt(valorEscola)}</span></div>
-      </div>
-    `;
+function setStatus(dateStr,alunoId,status,el){
+  let reg=aulas.find(a=>a.alunoId===alunoId&&a.data===dateStr);
+  if(!reg){reg={id:genId(),alunoId,data:dateStr,status:'',obs:'',exp:''};aulas.push(reg);}
+  reg.status=reg.status===status?'':status;
+  saveAulasData();
+  const row=el.closest('.aula-row');
+  row.querySelectorAll('.status-pill').forEach(p=>p.classList.remove('active'));
+  if(reg.status){const map={dada:'pill-dada',fp:'pill-fp',faj:'pill-faj',fanj:'pill-fanj'};row.querySelector('.'+map[reg.status])?.classList.add('active');}
+}
+
+function setObs(dateStr,alunoId,field,val){
+  let reg=aulas.find(a=>a.alunoId===alunoId&&a.data===dateStr);
+  if(!reg){reg={id:genId(),alunoId,data:dateStr,status:'',obs:'',exp:''};aulas.push(reg);}
+  reg[field]=val; saveAulasData();
+}
+
+function showAlunosList(){
+  document.getElementById('subview-list').style.display='block';
+  document.getElementById('subview-form').style.display='none';
+  renderAlunos();
+}
+
+function showNewAluno(){
+  editingAlunoId=null;
+  document.getElementById('aluno-form-title').textContent='Novo Aluno';
+  document.getElementById('btn-del-aluno').style.display='none';
+  ['a-nome','a-hora','a-valor','a-escola','a-liquido','a-notas'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('a-tipo').value='escola';
+  document.querySelectorAll('#dias-group input[type=checkbox]').forEach(cb=>cb.checked=false);
+  document.getElementById('subview-list').style.display='none';
+  document.getElementById('subview-form').style.display='block';
+}
+
+function showEditAluno(id){
+  const a=alunos.find(x=>x.id===id); if(!a) return;
+  editingAlunoId=id;
+  document.getElementById('aluno-form-title').textContent='Editar Aluno';
+  document.getElementById('btn-del-aluno').style.display='block';
+  document.getElementById('a-nome').value=a.nome||'';
+  document.getElementById('a-tipo').value=a.tipo||'escola';
+  document.getElementById('a-hora').value=a.hora||'';
+  document.getElementById('a-valor').value=a.valor||'';
+  document.getElementById('a-escola').value=a.escola||'';
+  document.getElementById('a-liquido').value=((a.valor||0)-(a.escola||0)).toFixed(2);
+  document.getElementById('a-notas').value=a.notas||'';
+  document.querySelectorAll('#dias-group input[type=checkbox]').forEach(cb=>cb.checked=(a.dias||[]).includes(cb.value));
+  document.getElementById('subview-list').style.display='none';
+  document.getElementById('subview-form').style.display='block';
+}
+
+function calcLiquido(){
+  const v=parseFloat(document.getElementById('a-valor').value)||0;
+  const e=parseFloat(document.getElementById('a-escola').value)||0;
+  document.getElementById('a-liquido').value=(v-e).toFixed(2);
+}
+
+function saveAluno(){
+  const nome=document.getElementById('a-nome').value.trim();
+  if(!nome){showNotif('Preenche o nome do aluno');return;}
+  const dias=Array.from(document.querySelectorAll('#dias-group input[type=checkbox]:checked')).map(cb=>cb.value);
+  const obj={
+    id:editingAlunoId||genId(), nome, dias,
+    hora:document.getElementById('a-hora').value,
+    valor:parseFloat(document.getElementById('a-valor').value)||0,
+    escola:parseFloat(document.getElementById('a-escola').value)||0,
+    tipo:document.getElementById('a-tipo').value,
+    notas:document.getElementById('a-notas').value.trim(),
+  };
+  if(editingAlunoId){alunos[alunos.findIndex(a=>a.id===editingAlunoId)]=obj;}
+  else alunos.push(obj);
+  saveAlunos(); showNotif('Aluno guardado!'); showAlunosList();
+}
+
+function deleteAluno(){
+  if(!editingAlunoId||!confirm('Eliminar este aluno e todas as suas aulas?')) return;
+  alunos=alunos.filter(a=>a.id!==editingAlunoId);
+  aulas=aulas.filter(a=>a.alunoId!==editingAlunoId);
+  saveAlunos(); saveAulasData(); showNotif('Aluno eliminado'); showAlunosList();
+}
+
+function renderAlunos(){
+  document.getElementById('alunos-stats').innerHTML=
+    '<div class="stat-card"><div class="stat-label">Total Alunos</div><div class="stat-val orange">'+alunos.length+'</div></div>'+
+    '<div class="stat-card"><div class="stat-label">Escola</div><div class="stat-val yellow">'+alunos.filter(a=>a.tipo==='escola').length+'</div></div>'+
+    '<div class="stat-card"><div class="stat-label">Particulares</div><div class="stat-val orange">'+alunos.filter(a=>a.tipo==='particular').length+'</div></div>';
+  const grid=document.getElementById('students-grid');
+  if(!alunos.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1">Nenhum aluno ainda.<br>Clica em &quot;+ Novo Aluno&quot; para comecar.</div>';return;}
+  grid.innerHTML=alunos.map(a=>{
+    const diasStr=(a.dias||[]).sort().map(d=>DIAS_NOME[parseInt(d)]).join(', ');
+    const aulasFeitas=aulas.filter(au=>au.alunoId===a.id&&au.status==='dada').length;
+    const liquido=(a.valor||0)-(a.escola||0);
+    return '<div class="student-card '+a.tipo+'" onclick="showEditAluno(\''+a.id+'\')">'+
+      '<div class="student-name">'+esc(a.nome)+'</div>'+
+      '<div class="student-meta">'+
+      '<span>'+diasStr+(a.hora?' - '+a.hora:'')+'</span>'+
+      (a.tipo==='escola'&&a.escola?'<span>Escola: '+fmt(a.escola)+'/aula | Tu recebes: '+fmt(liquido)+'/aula</span>':'')+
+      '</div>'+
+      '<div class="student-tags"><span class="tag '+(a.tipo==='escola'?'tag-escola':'tag-particular')+'">'+(a.tipo==='escola'?'Escola':'Particular')+'</span></div>'+
+      '<div class="student-footer">'+
+      '<span class="student-valor">'+fmt(a.valor||0)+'/aula</span>'+
+      '<span class="aulas-count">'+aulasFeitas+' aulas dadas</span>'+
+      '</div></div>';
+  }).join('');
+}
+
+function getDiasMes(aluno,y,m){
+  const days=[], total=new Date(y,m,0).getDate();
+  for(let d=1;d<=total;d++){
+    const date=new Date(y,m-1,d);
+    if((aluno.dias||[]).includes(String(date.getDay())))
+      days.push({d,dow:date.getDay(),dateStr:toDateStr(y,m,d)});
+  }
+  return days;
+}
+
+function initRelatorios(){
+  const sel=document.getElementById('rel-aluno');
+  sel.innerHTML=alunos.length?alunos.map(a=>'<option value="'+a.id+'">'+esc(a.nome)+'</option>').join(''):'<option value="">Sem alunos</option>';
+  const now=new Date();
+  const mes=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  document.getElementById('rel-mes').value=mes;
+  document.getElementById('rel-mes-escola').value=mes;
+  const list=document.getElementById('escola-check-list');
+  const ea=alunos.filter(a=>a.tipo==='escola');
+  list.innerHTML=ea.length?ea.map(a=>'<div class="student-check-item"><input type="checkbox" id="chk-'+a.id+'" value="'+a.id+'" checked /><label for="chk-'+a.id+'">'+esc(a.nome)+'</label></div>').join(''):'<div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);padding:0.5rem">Nenhum aluno do tipo Escola.</div>';
+}
+
+function exportIndividual(){
+  const alunoId=document.getElementById('rel-aluno').value;
+  const mes=document.getElementById('rel-mes').value;
+  if(!alunoId||!mes){showNotif('Seleciona aluno e mes');return;}
+  const aluno=alunos.find(a=>a.id===alunoId); if(!aluno) return;
+  const [yStr,mStr]=mes.split('-');
+  const y=parseInt(yStr),m=parseInt(mStr);
+  const mesLabel=MESES[m-1]+' '+y;
+  const proxDate=new Date(y,m,1);
+  const yProx=proxDate.getFullYear(),mProx=proxDate.getMonth()+1;
+  const mesProxLabel=MESES[mProx-1]+' '+yProx;
+
+  const diasCurso=getDiasMes(aluno,y,m);
+  const diasProx=getDiasMes(aluno,yProx,mProx);
+  const regs={};
+  aulas.filter(a=>a.alunoId===alunoId&&a.data.startsWith(mes)).forEach(a=>regs[a.data]=a);
+
+  const dadas=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='dada').length;
+  const faj=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='faj').length;
+  const fanj=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='fanj').length;
+  const fp=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='fp').length;
+  const semReg=diasCurso.filter(d=>!(regs[d.dateStr]||{}).status).length;
+
+  const valorAula=aluno.valor||0;
+  const valorDevolver=faj*valorAula;
+  const aulasProx=diasProx.length;
+  const valorProx=aulasProx*valorAula;
+  const totalCobrar=valorProx-valorDevolver;
+
+  const sl={dada:'Dada',fp:'Falta Professor',faj:'Falta Aluno (Just.)',fanj:'Falta Aluno (N/Just.)','':'--'};
+  const rowsCurso=diasCurso.map(({d,dow,dateStr})=>{
+    const reg=regs[dateStr]||{};
+    return '<tr><td>'+d+' '+DIAS_NOME[dow]+'</td><td>'+sl[reg.status||'']+'</td><td>'+esc(reg.obs||'--')+'</td><td>'+esc(reg.exp||'--')+'</td></tr>';
+  }).join('');
+  const rowsProx=diasProx.map(({d,dow})=>'<tr><td>'+d+' '+DIAS_NOME[dow]+'</td><td class="right">'+fmt(valorAula)+'</td></tr>').join('');
+
+  document.getElementById('pdf-area').innerHTML=
+    '<div class="pdf-h">'+
+    '<div><div class="pdf-logo">Aulas de <span>Bateria</span></div><div style="font-size:0.65rem;color:#999;font-family:Courier Prime,monospace;letter-spacing:0.15em;margin-top:0.2rem">RELATORIO MENSAL - ALUNO</div></div>'+
+    '<div class="pdf-meta"><strong>'+esc(aluno.nome)+'</strong><div>'+(aluno.tipo==='escola'?'Aluno de Escola':'Aluno Particular')+'</div><div>Valor por aula: '+fmt(valorAula)+'</div><div style="margin-top:0.3rem">Emitido: '+new Date().toLocaleDateString('pt-PT')+'</div></div>'+
+    '</div>'+
+
+    '<div class="pdf-section"><div class="pdf-section-title">Resumo - '+mesLabel+'</div>'+
+    '<table class="pdf-table"><thead><tr><th>Aulas Dadas</th><th>Falta Aluno (Just.)</th><th>Falta Aluno (N/Just.)</th><th>Falta Professor</th><th>Sem Registo</th></tr></thead>'+
+    '<tbody><tr><td>'+dadas+'</td><td>'+faj+'</td><td>'+fanj+'</td><td>'+fp+'</td><td>'+semReg+'</td></tr></tbody></table></div>'+
+
+    '<div class="pdf-section"><div class="pdf-section-title">Detalhe de Aulas - '+mesLabel+'</div>'+
+    '<table class="pdf-table"><thead><tr><th>Data</th><th>Estado</th><th>Materia</th><th>Observacoes</th></tr></thead><tbody>'+rowsCurso+'</tbody></table></div>'+
+
+    '<div class="pdf-section"><div class="pdf-section-title">Aulas Programadas - '+mesProxLabel+'</div>'+
+    '<table class="pdf-table"><thead><tr><th>Data</th><th class="right">Valor</th></tr></thead><tbody>'+rowsProx+'</tbody></table></div>'+
+
+    '<div class="pdf-section"><div class="pdf-section-title">Total a Cobrar</div>'+
+    '<div class="pdf-summary-box">'+
+    '<div class="pdf-sum-row proximo"><span>'+aulasProx+' aulas em '+mesProxLabel+' x '+fmt(valorAula)+'</span><span>'+fmt(valorProx)+'</span></div>'+
+    (valorDevolver>0?'<div class="pdf-sum-row devolver"><span>'+faj+' falta(s) just. a devolver x '+fmt(valorAula)+'</span><span>- '+fmt(valorDevolver)+'</span></div>':'')+
+    '<div class="pdf-sum-row total"><span>Total a pagar ate dia 8</span><span>'+fmt(totalCobrar)+'</span></div>'+
+    '</div></div>'+
+    '<div class="pdf-footer"><span>Aulas de Bateria</span><span>Gerado em '+new Date().toLocaleDateString('pt-PT')+'</span></div>';
+
+  document.getElementById('pdf-area').style.display='block';
+  window.print();
+  document.getElementById('pdf-area').style.display='none';
+}
+
+function exportEscola(){
+  const mes=document.getElementById('rel-mes-escola').value;
+  if(!mes){showNotif('Seleciona um mes');return;}
+  const checked=Array.from(document.querySelectorAll('#escola-check-list input:checked')).map(cb=>cb.value);
+  if(!checked.length){showNotif('Seleciona pelo menos um aluno');return;}
+  const [yStr,mStr]=mes.split('-');
+  const y=parseInt(yStr),m=parseInt(mStr);
+  const mesLabel=MESES[m-1]+' '+y;
+  let html='';
+  checked.forEach((alunoId,idx)=>{
+    const aluno=alunos.find(a=>a.id===alunoId); if(!aluno) return;
+    const diasCurso=getDiasMes(aluno,y,m);
+    const regs={};
+    aulas.filter(a=>a.alunoId===alunoId&&a.data.startsWith(mes)).forEach(a=>regs[a.data]=a);
+    const dadas=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='dada').length;
+    const faj=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='faj').length;
+    const fanj=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='fanj').length;
+    const fp=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='fp').length;
+    const valEscola=dadas*(aluno.escola||0);
+    const valLiq=dadas*((aluno.valor||0)-(aluno.escola||0));
+    const sl={dada:'Dada',fp:'Falta Prof.',faj:'F. Aluno Just.',fanj:'F. Aluno N/Just.','':'--'};
+    const rows=diasCurso.map(({d,dow,dateStr})=>{const r=regs[dateStr]||{};return '<tr><td>'+d+' '+DIAS_NOME[dow]+'</td><td>'+sl[r.status||'']+'</td><td>'+esc(r.obs||'--')+'</td></tr>';}).join('');
+    html+=(idx>0?'<hr class="pdf-divider" />':'')+
+      '<div class="pdf-section"><div class="pdf-section-title">Aluno</div>'+
+      '<p style="font-size:1.1rem;font-weight:700;margin-bottom:0.2rem">'+esc(aluno.nome)+'</p>'+
+      '<p style="font-size:0.8rem;color:#555">'+(aluno.dias||[]).sort().map(d=>DIAS_NOME[parseInt(d)]).join(', ')+(aluno.hora?' - '+aluno.hora:'')+' - '+fmt(aluno.valor||0)+'/aula</p></div>'+
+      '<table class="pdf-table"><thead><tr><th>Resumo</th><th>Dadas</th><th>F. Aluno Just.</th><th>F. Aluno N/Just.</th><th>F. Professor</th></tr></thead>'+
+      '<tbody><tr><td></td><td>'+dadas+'</td><td>'+faj+'</td><td>'+fanj+'</td><td>'+fp+'</td></tr></tbody></table>'+
+      '<table class="pdf-table"><thead><tr><th>Data</th><th>Estado</th><th>Materia</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+      '<div class="pdf-summary-box" style="max-width:300px">'+
+      '<div class="pdf-sum-row"><span>'+dadas+' aulas dadas x '+fmt(aluno.valor||0)+'</span><span>'+fmt(dadas*(aluno.valor||0))+'</span></div>'+
+      '<div class="pdf-sum-row"><span>Valor para a escola ('+fmt(aluno.escola||0)+'/aula)</span><span>'+fmt(valEscola)+'</span></div>'+
+      '<div class="pdf-sum-row total"><span>Professor recebe</span><span>'+fmt(valLiq)+'</span></div>'+
+      '</div>';
   });
 
-  const area = document.getElementById('pdf-area');
-  area.innerHTML = `
-    <div class="pdf-h">
-      <div><div class="pdf-logo">Aulas de <span>Bateria</span></div><div style="font-size:0.7rem;color:#999;font-family:'Courier Prime',monospace;letter-spacing:0.15em;margin-top:0.2rem">RELATÓRIO ESCOLA</div></div>
-      <div class="pdf-meta"><strong>${mesLabel}</strong><div>${checked.length} aluno(s)</div></div>
-    </div>
-    ${blocksHtml}
-    <div class="pdf-footer"><span>Aulas de Bateria</span><span>Gerado em ${new Date().toLocaleDateString('pt-PT')}</span></div>
-  `;
-
-  area.style.display = 'block';
+  document.getElementById('pdf-area').innerHTML=
+    '<div class="pdf-h"><div><div class="pdf-logo">Aulas de <span>Bateria</span></div>'+
+    '<div style="font-size:0.65rem;color:#999;font-family:Courier Prime,monospace;letter-spacing:0.15em;margin-top:0.2rem">RELATORIO PARA A ESCOLA</div></div>'+
+    '<div class="pdf-meta"><strong>'+mesLabel+'</strong><div>'+checked.length+' aluno(s)</div></div></div>'+
+    html+
+    '<div class="pdf-footer"><span>Aulas de Bateria</span><span>Gerado em '+new Date().toLocaleDateString('pt-PT')+'</span></div>';
+  document.getElementById('pdf-area').style.display='block';
   window.print();
-  area.style.display = 'none';
+  document.getElementById('pdf-area').style.display='none';
 }
 
-// ─── HELPERS ─────────────────────────────────────────────────────────
-function fmt(n) {
-  return '€\u00a0' + (n||0).toLocaleString('pt-PT', { minimumFractionDigits:2, maximumFractionDigits:2 });
-}
+function fmt(n){return 'EUR '+((n||0).toLocaleString('pt-PT',{minimumFractionDigits:2,maximumFractionDigits:2}));}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function showNotif(msg){const el=document.getElementById('notif');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500);}
 
-function esc(s) {
-  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-function showNotif(msg) {
-  const el = document.getElementById('notif');
-  el.textContent = msg;
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 2500);
-}
-
-function closeModal(e) {
-  if (e.target === document.getElementById('modal-overlay'))
-    document.getElementById('modal-overlay').classList.remove('open');
-}
-
-// ─── INIT ─────────────────────────────────────────────────────────────
-if (sessionStorage.getItem('ab_auth') === '1') {
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  loadData();
-  initAgenda();
-  renderAlunos();
-  initRelatorios();
+if(sessionStorage.getItem('ab_auth')==='1'){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('app').style.display='block';
+  loadData(); initAgenda(); renderAlunos(); initRelatorios();
 }
 </script>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
-  }
-</script>
+<script>if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});</script>
 </body>
 </html>

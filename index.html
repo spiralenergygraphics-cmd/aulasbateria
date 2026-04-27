@@ -609,7 +609,8 @@ function exportIndividual(){
   const semReg=diasCurso.filter(d=>!(regs[d.dateStr]||{}).status).length;
 
   const valorAula=aluno.valor||0;
-  const valorDevolver=faj*valorAula;
+  const nDesconto=fp+fanj; // fp + falta nao justificada descontam
+  const valorDevolver=nDesconto*valorAula;
   const aulasProx=diasProx.length;
   const valorProx=aulasProx*valorAula;
   const totalCobrar=valorProx-valorDevolver;
@@ -640,7 +641,7 @@ function exportIndividual(){
     '<div class="pdf-section"><div class="pdf-section-title">Total a Cobrar</div>'+
     '<div class="pdf-summary-box">'+
     '<div class="pdf-sum-row proximo"><span>'+aulasProx+' aulas em '+mesProxLabel+' x '+fmt(valorAula)+'</span><span>'+fmt(valorProx)+'</span></div>'+
-    (valorDevolver>0?'<div class="pdf-sum-row devolver"><span>'+faj+' falta(s) just. a devolver x '+fmt(valorAula)+'</span><span>- '+fmt(valorDevolver)+'</span></div>':'')+
+    (valorDevolver>0?'<div class="pdf-sum-row devolver"><span>'+nDesconto+' aula(s) a devolver (falta prof./aluno n/just.) x '+fmt(valorAula)+'</span><span>- '+fmt(valorDevolver)+'</span></div>':'')+
     '<div class="pdf-sum-row total"><span>Total a pagar ate dia 8</span><span>'+fmt(totalCobrar)+'</span></div>'+
     '</div></div>'+
     '<div class="pdf-footer"><span>Aulas de Bateria</span><span>Gerado em '+new Date().toLocaleDateString('pt-PT')+'</span></div>';

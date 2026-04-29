@@ -501,7 +501,7 @@ function setStatus(dateStr,alunoId,status,el){
   let reg=aulas.find(a=>a.alunoId===alunoId&&a.data===dateStr);
   if(!reg){reg={id:genId(),alunoId,data:dateStr,status:'',obs:'',exp:''};aulas.push(reg);}
   reg.status=reg.status===status?'':status;
-  saveAulasData();
+  saveAulaReg(reg);
   const row=el.closest('.aula-row');
   row.querySelectorAll('.status-pill').forEach(p=>p.classList.remove('active'));
   if(reg.status){const map={dada:'pill-dada',fp:'pill-fp',faj:'pill-faj',fanj:'pill-fanj'};row.querySelector('.'+map[reg.status])?.classList.add('active');}

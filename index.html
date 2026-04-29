@@ -447,8 +447,16 @@ function switchTab(tab,el) {
 }
 
 function initAgenda() { agendaDate=new Date(); renderAgenda(); }
-function changeMonth(d) { agendaDate.setMonth(agendaDate.getMonth()+d); renderAgenda(); }
-function goToday() { agendaDate=new Date(); renderAgenda(); }
+function changeMonth(d) { agendaDate.setMonth(agendaDate.getMonth()+d); reloadAulas(); }
+function goToday() { agendaDate=new Date(); reloadAulas(); }
+async function reloadAulas() {
+  const dau = await sb.get('aulas');
+  aulas = Array.isArray(dau) ? dau.map(r => ({
+    id: r.id, alunoId: r.aluno_id, data: r.data,
+    status: r.status, obs: r.obs||'', exp: r.exp||''
+  })) : [];
+  renderAgenda();
+}
 
 function renderAgenda() {
   const y=agendaDate.getFullYear(), m=agendaDate.getMonth();

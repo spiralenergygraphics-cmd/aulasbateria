@@ -700,6 +700,7 @@ function exportEscola(){
   const y=parseInt(yStr),m=parseInt(mStr);
   const mesLabel=MESES[m-1]+' '+y;
   let html='';
+  let totalGeralEscola=0;
   checked.forEach((alunoId,idx)=>{
     const aluno=alunos.find(a=>a.id===alunoId); if(!aluno) return;
     const diasCurso=getDiasMes(aluno,y,m);
@@ -710,28 +711,33 @@ function exportEscola(){
     const fanj=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='fanj').length;
     const fp=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='fp').length;
     const valEscola=dadas*(aluno.escola||0);
-    const valLiq=dadas*((aluno.valor||0)-(aluno.escola||0));
+    totalGeralEscola+=valEscola;
     const sl={dada:'Dada',fp:'Falta Prof.',faj:'F. Aluno Just.',fanj:'F. Aluno N/Just.','':'--'};
     const rows=diasCurso.map(({d,dow,dateStr})=>{const r=regs[dateStr]||{};return '<tr><td>'+d+' '+DIAS_NOME[dow]+'</td><td>'+sl[r.status||'']+'</td><td>'+esc(r.obs||'--')+'</td></tr>';}).join('');
     html+=(idx>0?'<hr class="pdf-divider" />':'')+
       '<div class="pdf-section"><div class="pdf-section-title">Aluno</div>'+
       '<p style="font-size:1.1rem;font-weight:700;margin-bottom:0.2rem">'+esc(aluno.nome)+'</p>'+
-      '<p style="font-size:0.8rem;color:#555">'+(aluno.dias||[]).sort().map(d=>DIAS_NOME[parseInt(d)]).join(', ')+(aluno.hora?' - '+aluno.hora:'')+' - '+fmt(aluno.valor||0)+'/aula</p></div>'+
+      '<p style="font-size:0.8rem;color:#555">'+(aluno.dias||[]).sort().map(d=>DIAS_NOME[parseInt(d)]).join(', ')+(aluno.hora?' - '+aluno.hora:'')+' - '+fmt(aluno.valor||0)+'/aula - escola: '+fmt(aluno.escola||0)+'/aula</p></div>'+
       '<table class="pdf-table"><thead><tr><th>Resumo</th><th>Dadas</th><th>F. Aluno Just.</th><th>F. Aluno N/Just.</th><th>F. Professor</th></tr></thead>'+
       '<tbody><tr><td></td><td>'+dadas+'</td><td>'+faj+'</td><td>'+fanj+'</td><td>'+fp+'</td></tr></tbody></table>'+
       '<table class="pdf-table"><thead><tr><th>Data</th><th>Estado</th><th>Materia</th></tr></thead><tbody>'+rows+'</tbody></table>'+
       '<div class="pdf-summary-box" style="max-width:300px">'+
-      '<div class="pdf-sum-row"><span>'+dadas+' aulas dadas x '+fmt(aluno.valor||0)+'</span><span>'+fmt(dadas*(aluno.valor||0))+'</span></div>'+
-      '<div class="pdf-sum-row"><span>Valor para a escola ('+fmt(aluno.escola||0)+'/aula)</span><span>'+fmt(valEscola)+'</span></div>'+
-      '<div class="pdf-sum-row total"><span>Professor recebe</span><span>'+fmt(valLiq)+'</span></div>'+
+      '<div class="pdf-sum-row"><span>'+dadas+' aulas x '+fmt(aluno.escola||0)+'/aula</span><span></span></div>'+
+      '<div class="pdf-sum-row total"><span>Valor para a escola</span><span>'+fmt(valEscola)+'</span></div>'+
       '</div>';
   });
+
+  // Total geral no fim
+  const totalHtml='<hr class="pdf-divider" />'+
+    '<div class="pdf-summary-box" style="max-width:340px;margin-left:auto;border:2px solid #000">'+
+    '<div class="pdf-sum-row total" style="font-size:1.1rem"><span>TOTAL A ENTREGAR A ESCOLA</span><span>'+fmt(totalGeralEscola)+'</span></div>'+
+    '</div>';
 
   document.getElementById('pdf-area').innerHTML=
     '<div class="pdf-h"><div><div class="pdf-logo">Aulas de <span>Bateria</span></div>'+
     '<div style="font-size:0.65rem;color:#999;font-family:Courier Prime,monospace;letter-spacing:0.15em;margin-top:0.2rem">RELATORIO PARA A ESCOLA</div></div>'+
     '<div class="pdf-meta"><strong>'+mesLabel+'</strong><div>'+checked.length+' aluno(s)</div></div></div>'+
-    html+
+    html+totalHtml+
     '<div class="pdf-footer"><span>Aulas de Bateria</span><span>Gerado em '+new Date().toLocaleDateString('pt-PT')+'</span></div>';
   document.getElementById('pdf-area').style.display='block';
   window.print();

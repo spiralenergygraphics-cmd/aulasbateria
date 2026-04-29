@@ -366,8 +366,30 @@
 
 <script>
 const PASSWORD = 'bateria2024';
-const SK_ALUNOS = 'ab_alunos';
-const SK_AULAS  = 'ab_aulas';
+const SB_URL = 'https://whsaledvqspcbjrktzvn.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indoc2FsZWR2cXNwY2Jqcmt0enZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0MzY1NzksImV4cCI6MjA5MzAxMjU3OX0.-oRUgvZcN4yD_dcVllqjVLW8mqZhZiZIVM74icG8uq0';
+const sb = {
+  async get(table, filter) {
+    const q = filter ? '?'+filter : '?order=created_at.asc';
+    const r = await fetch(SB_URL+'/rest/v1/'+table+q, {
+      headers: { apikey: SB_KEY, Authorization: 'Bearer '+SB_KEY }
+    });
+    return r.json();
+  },
+  async upsert(table, row) {
+    await fetch(SB_URL+'/rest/v1/'+table, {
+      method: 'POST',
+      headers: { apikey: SB_KEY, Authorization: 'Bearer '+SB_KEY, 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates' },
+      body: JSON.stringify(row)
+    });
+  },
+  async del(table, col, val) {
+    await fetch(SB_URL+'/rest/v1/'+table+'?'+col+'=eq.'+val, {
+      method: 'DELETE',
+      headers: { apikey: SB_KEY, Authorization: 'Bearer '+SB_KEY }
+    });
+  }
+};
 const DIAS_NOME = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
 const DIAS_LONG = ['Domingo','Segunda-feira','Terca-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'];
 const MESES = ['Janeiro','Fevereiro','Marco','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
@@ -379,7 +401,7 @@ function doLogin() {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     sessionStorage.setItem('ab_auth','1');
-    loadData(); initAgenda(); renderAlunos(); initRelatorios();
+    loadData().then(()=>{ initAgenda(); renderAlunos(); initRelatorios(); });
   } else {
     document.getElementById('login-error').textContent = 'Password incorreta';
     document.getElementById('pin-input').value = '';
@@ -388,12 +410,29 @@ function doLogin() {
 }
 function doLogout() { sessionStorage.removeItem('ab_auth'); location.reload(); }
 
-function loadData() {
-  alunos = JSON.parse(localStorage.getItem(SK_ALUNOS)||'[]');
-  aulas  = JSON.parse(localStorage.getItem(SK_AULAS)||'[]');
+async function loadData() {
+  const [da, dau] = await Promise.all([sb.get('alunos'), sb.get('aulas')]);
+  alunos = Array.isArray(da) ? da.map(r => ({
+    id: r.id, nome: r.nome, dias: r.dias||[], hora: r.hora,
+    valor: r.valor, escola: r.escola, tipo: r.tipo, notas: r.notas
+  })) : [];
+  aulas = Array.isArray(dau) ? dau.map(r => ({
+    id: r.id, alunoId: r.aluno_id, data: r.data,
+    status: r.status, obs: r.obs||'', exp: r.exp||''
+  })) : [];
 }
-function saveAlunos()    { localStorage.setItem(SK_ALUNOS, JSON.stringify(alunos)); }
-function saveAulasData() { localStorage.setItem(SK_AULAS,  JSON.stringify(aulas));  }
+async function saveAlunos(obj) {
+  await sb.upsert('alunos', {
+    id: obj.id, nome: obj.nome, dias: obj.dias, hora: obj.hora,
+    valor: obj.valor, escola: obj.escola, tipo: obj.tipo, notas: obj.notas
+  });
+}
+async function saveAulaReg(reg) {
+  await sb.upsert('aulas', {
+    id: reg.id, aluno_id: reg.alunoId, data: reg.data,
+    status: reg.status, obs: reg.obs||'', exp: reg.exp||''
+  });
+}
 function genId() { return Date.now().toString(36)+Math.random().toString(36).slice(2,5); }
 function toDateStr(y,m,d) { return y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0'); }
 
@@ -471,7 +510,7 @@ function setStatus(dateStr,alunoId,status,el){
 function setObs(dateStr,alunoId,field,val){
   let reg=aulas.find(a=>a.alunoId===alunoId&&a.data===dateStr);
   if(!reg){reg={id:genId(),alunoId,data:dateStr,status:'',obs:'',exp:''};aulas.push(reg);}
-  reg[field]=val; saveAulasData();
+  reg[field]=val; saveAulaReg(reg);
 }
 
 function showAlunosList(){
@@ -514,7 +553,7 @@ function calcLiquido(){
   document.getElementById('a-liquido').value=(v-e).toFixed(2);
 }
 
-function saveAluno(){
+async function saveAluno(){
   const nome=document.getElementById('a-nome').value.trim();
   if(!nome){showNotif('Preenche o nome do aluno');return;}
   const dias=Array.from(document.querySelectorAll('#dias-group input[type=checkbox]:checked')).map(cb=>cb.value);
@@ -528,14 +567,15 @@ function saveAluno(){
   };
   if(editingAlunoId){alunos[alunos.findIndex(a=>a.id===editingAlunoId)]=obj;}
   else alunos.push(obj);
-  saveAlunos(); showNotif('Aluno guardado!'); showAlunosList();
+  await saveAlunos(obj); showNotif('Aluno guardado!'); showAlunosList();
 }
 
-function deleteAluno(){
+async function deleteAluno(){
   if(!editingAlunoId||!confirm('Eliminar este aluno e todas as suas aulas?')) return;
   alunos=alunos.filter(a=>a.id!==editingAlunoId);
   aulas=aulas.filter(a=>a.alunoId!==editingAlunoId);
-  saveAlunos(); saveAulasData(); showNotif('Aluno eliminado'); showAlunosList();
+  await sb.del('alunos','id',editingAlunoId);
+  showNotif('Aluno eliminado'); showAlunosList();
 }
 
 function renderAlunos(){

@@ -142,6 +142,8 @@
     .pill-faj.active { background: var(--accent2); color: #000; }
     .pill-fanj { background: rgba(255,59,59,0.1); color: var(--danger); border-color: rgba(255,59,59,0.3); }
     .pill-fanj.active { background: var(--danger); color: #fff; }
+    .pill-fer { background: rgba(91,200,255,0.1); color: #5bc8ff; border-color: rgba(91,200,255,0.3); }
+    .pill-fer.active { background: #5bc8ff; color: #000; }
     .aula-obs-wrap { width: 100%; display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.3rem; }
     .aula-obs-wrap input { background: var(--surface2); border: 1px solid var(--border); color: var(--text); font-family: var(--font-mono); font-size: 0.78rem; padding: 0.4rem 0.7rem; flex: 1; min-width: 150px; outline: none; border-radius: var(--r); transition: border-color 0.2s; }
     .aula-obs-wrap input:focus { border-color: var(--accent); }
@@ -512,7 +514,7 @@ function setStatus(dateStr,alunoId,status,el){
   saveAulaReg(reg);
   const row=el.closest('.aula-row');
   row.querySelectorAll('.status-pill').forEach(p=>p.classList.remove('active'));
-  if(reg.status){const map={dada:'pill-dada',fp:'pill-fp',faj:'pill-faj',fanj:'pill-fanj'};row.querySelector('.'+map[reg.status])?.classList.add('active');}
+  if(reg.status){const map={dada:'pill-dada',fp:'pill-fp',faj:'pill-faj',fanj:'pill-fanj',fer:'pill-fer'};row.querySelector('.'+map[reg.status])?.classList.add('active');}
 }
 
 function setObs(dateStr,alunoId,field,val){
@@ -654,16 +656,17 @@ function exportIndividual(){
   const faj=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='faj').length;
   const fanj=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='fanj').length;
   const fp=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='fp').length;
+  const fer=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='fer').length;
   const semReg=diasCurso.filter(d=>!(regs[d.dateStr]||{}).status).length;
 
   const valorAula=aluno.valor||0;
-  const nDesconto=fp+fanj; // fp + falta nao justificada descontam
+  const nDesconto=fp+faj; // fp + falta justificada descontam; fanj NAO desconta
   const valorDevolver=nDesconto*valorAula;
   const aulasProx=diasProx.length;
   const valorProx=aulasProx*valorAula;
   const totalCobrar=valorProx-valorDevolver;
 
-  const sl={dada:'Dada',fp:'Falta Professor',faj:'Falta Aluno (Just.)',fanj:'Falta Aluno (N/Just.)','':'--'};
+  const sl={dada:'Dada',fp:'Falta Professor',faj:'Falta Aluno (Just.)',fanj:'Falta Aluno (N/Just.)',fer:'Ferias/Feriado','':'--'};
   const rowsCurso=diasCurso.map(({d,dow,dateStr})=>{
     const reg=regs[dateStr]||{};
     return '<tr><td>'+d+' '+DIAS_NOME[dow]+'</td><td>'+sl[reg.status||'']+'</td><td>'+esc(reg.obs||'--')+'</td><td>'+esc(reg.exp||'--')+'</td></tr>';
@@ -677,8 +680,8 @@ function exportIndividual(){
     '</div>'+
 
     '<div class="pdf-section"><div class="pdf-section-title">Resumo - '+mesLabel+'</div>'+
-    '<table class="pdf-table"><thead><tr><th>Aulas Dadas</th><th>Falta Aluno (Just.)</th><th>Falta Aluno (N/Just.)</th><th>Falta Professor</th><th>Sem Registo</th></tr></thead>'+
-    '<tbody><tr><td>'+dadas+'</td><td>'+faj+'</td><td>'+fanj+'</td><td>'+fp+'</td><td>'+semReg+'</td></tr></tbody></table></div>'+
+    '<table class="pdf-table"><thead><tr><th>Dadas</th><th>F. Just.</th><th>F. N/Just.</th><th>F. Prof.</th><th>Ferias</th><th>Sem Reg.</th></tr></thead>'+
+    '<tbody><tr><td>'+dadas+'</td><td>'+faj+'</td><td>'+fanj+'</td><td>'+fp+'</td><td>'+fer+'</td><td>'+semReg+'</td></tr></tbody></table></div>'+
 
     '<div class="pdf-section"><div class="pdf-section-title">Detalhe de Aulas - '+mesLabel+'</div>'+
     '<table class="pdf-table"><thead><tr><th>Data</th><th>Estado</th><th>Materia</th><th>Observacoes</th></tr></thead><tbody>'+rowsCurso+'</tbody></table></div>'+
@@ -689,7 +692,7 @@ function exportIndividual(){
     '<div class="pdf-section"><div class="pdf-section-title">Total a Cobrar</div>'+
     '<div class="pdf-summary-box">'+
     '<div class="pdf-sum-row proximo"><span>'+aulasProx+' aulas em '+mesProxLabel+' x '+fmt(valorAula)+'</span><span>'+fmt(valorProx)+'</span></div>'+
-    (valorDevolver>0?'<div class="pdf-sum-row devolver"><span>'+nDesconto+' aula(s) a devolver (falta prof./aluno n/just.) x '+fmt(valorAula)+'</span><span>- '+fmt(valorDevolver)+'</span></div>':'')+
+    (valorDevolver>0?'<div class="pdf-sum-row devolver"><span>'+nDesconto+' aula(s) a descontar (falta prof. + falta just.) x '+fmt(valorAula)+'</span><span>- '+fmt(valorDevolver)+'</span></div>':'')+
     '<div class="pdf-sum-row total"><span>Total a pagar ate dia 8</span><span>'+fmt(totalCobrar)+'</span></div>'+
     '</div></div>'+
     '<div class="pdf-footer"><span>Aulas de Bateria</span><span>Gerado em '+new Date().toLocaleDateString('pt-PT')+'</span></div>';
@@ -720,7 +723,7 @@ function exportEscola(){
     const fp=diasCurso.filter(d=>(regs[d.dateStr]||{}).status==='fp').length;
     const valEscola=dadas*(aluno.escola||0);
     totalGeralEscola+=valEscola;
-    const sl={dada:'Dada',fp:'Falta Prof.',faj:'F. Aluno Just.',fanj:'F. Aluno N/Just.','':'--'};
+    const sl={dada:'Dada',fp:'Falta Prof.',faj:'F. Aluno Just.',fanj:'F. Aluno N/Just.',fer:'Ferias/Feriado','':'--'};
     const rows=diasCurso.map(({d,dow,dateStr})=>{const r=regs[dateStr]||{};return '<tr><td>'+d+' '+DIAS_NOME[dow]+'</td><td>'+sl[r.status||'']+'</td><td>'+esc(r.obs||'--')+'</td></tr>';}).join('');
     html+=(idx>0?'<hr class="pdf-divider" />':'')+
       '<div class="pdf-section"><div class="pdf-section-title">Aluno</div>'+
